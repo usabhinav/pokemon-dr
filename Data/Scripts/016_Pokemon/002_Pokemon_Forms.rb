@@ -36,14 +36,6 @@ class PokeBattle_Pokemon
   def fSpecies
     return pbGetFSpeciesFromForm(@species,formSimple)
   end
-  alias __mf_compatibleWithMove? compatibleWithMove?   # Deprecated
-  def compatibleWithMove?(move)
-    v = MultipleForms.call("getMoveCompatibility",self)
-    if v!=nil
-      return v.any? { |j| j==move }
-    end
-    return __mf_compatibleWithMove?(move)
-  end
 
   alias __mf_initialize initialize
   def initialize(*args)
@@ -69,6 +61,7 @@ class PokeBattle_RealBattlePeer
 
   # For switching out, including due to fainting, and for the end of battle
   def pbOnLeavingBattle(battle,pkmn,usedInBattle,endBattle=false)
+    return if !pkmn
     f = MultipleForms.call("getFormOnLeavingBattle",pkmn,battle,usedInBattle,endBattle)
     pkmn.form = f if f && pkmn.form!=f
     pkmn.hp = pkmn.totalhp if pkmn.hp>pkmn.totalhp
@@ -467,7 +460,7 @@ MultipleForms.register(:GENESECT,{
 
 MultipleForms.register(:GRENINJA,{
   "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
-    next 0 if pkmn.fainted? || endBattle
+    next 1 if pkmn.form == 2 && (pkmn.fainted? || endBattle)
   }
 })
 

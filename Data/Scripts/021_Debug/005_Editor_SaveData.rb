@@ -550,7 +550,7 @@ def pbSaveTownMap
     f.write("\r\n")
     for i in 0...mapdata.length
       map = mapdata[i]
-      return if !map
+      next if !map
       f.write("\#-------------------------------\r\n")
       f.write(sprintf("[%d]\r\n",i))
       rname = pbGetMessage(MessageTypes::RegionNames,i)
@@ -839,11 +839,14 @@ def pbSavePokemonData
       pokedata.write(",") if count>0
       pokedata.write(sprintf("%s,%s,",cnew_species,evoname))
       param_type = PBEvolution.getFunction(method, "parameterType")
-      if param_type
-        cparameter = getConstantName(param_type,parameter) rescue ""
-        pokedata.write("#{cparameter}")
-      else
-        pokedata.write("#{parameter}")
+      has_param = !PBEvolution.hasFunction?(method, "parameterType") || param_type != nil
+      if has_param
+        if param_type
+          cparameter = (getConstantName(param_type, parameter) rescue parameter)
+          pokedata.write("#{cparameter}")
+        else
+          pokedata.write("#{parameter}")
+        end
       end
       count += 1
     end
@@ -1299,11 +1302,14 @@ def pbSavePokemonFormsData
         next if !cnew_species || cnew_species==""
         pokedata.write(sprintf("%s,%s,",cnew_species,evoname))
         param_type = PBEvolution.getFunction(method, "parameterType")
-        if param_type
-          cparameter = getConstantName(param_type,parameter) rescue ""
-          pokedata.write("#{cparameter}")
-        else
-          pokedata.write("#{parameter}")
+        has_param = !PBEvolution.hasFunction?(method, "parameterType") || param_type != nil
+        if has_param
+          if param_type
+            cparameter = (getConstantName(param_type, parameter) rescue parameter)
+            pokedata.write("#{cparameter}")
+          else
+            pokedata.write("#{parameter}")
+          end
         end
         pokedata.write(",") if k<evos.length-1
       end
@@ -1330,7 +1336,7 @@ end
 # Save Shadow move data to PBS file
 #===============================================================================
 def pbSaveShadowMoves
-  moves = pbLoadShadowMovesets
+  shadow_movesets = pbLoadShadowMovesets
   File.open("PBS/shadowmoves.txt","wb") { |f|
     f.write(0xEF.chr)
     f.write(0xBB.chr)
@@ -1338,14 +1344,14 @@ def pbSaveShadowMoves
     f.write("\# "+_INTL("See the documentation on the wiki to learn how to edit this file."))
     f.write("\r\n")
     f.write("\#-------------------------------\r\n")
-    for i in 0...moves.length
-      move = moves[i]
-      next if !move || moves.length==0
+    for i in 0...shadow_movesets.length
+      moveset = shadow_movesets[i]
+      next if !moveset || moveset.length==0
       constname = (getConstantName(PBSpecies,i) rescue pbGetSpeciesConst(i) rescue nil)
       next if !constname
       f.write(sprintf("%s = ",constname))
       movenames = []
-      for m in move
+      for m in moveset
         movenames.push((getConstantName(PBMoves,m) rescue pbGetMoveConst(m) rescue nil))
       end
       f.write(sprintf("%s\r\n",movenames.compact.join(",")))

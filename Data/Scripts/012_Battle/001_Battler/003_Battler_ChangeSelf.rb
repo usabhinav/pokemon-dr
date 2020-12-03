@@ -73,6 +73,7 @@ class PokeBattle_Battler
       @pokemon.heal
       return
     end
+    PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") if !showMessage
     @battle.scene.pbFaintBattler(self)
     pbInitEffects(false)
     # Reset status

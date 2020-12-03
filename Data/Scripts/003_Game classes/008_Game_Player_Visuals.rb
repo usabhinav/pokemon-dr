@@ -27,7 +27,7 @@ class Game_Player < Game_Character
     return false if $Trainer.equippedDisguise
     terrain = pbGetTerrainTag
     input = ($PokemonSystem.runstyle==1) ? $PokemonGlobal.runtoggle : Input.press?(Input::A)
-    return input && $PokemonGlobal.runningShoes &&
+    return input && $PokemonGlobal.runningShoes && !jumping? &&
        !$PokemonGlobal.diving && !$PokemonGlobal.surfing &&
        !$PokemonGlobal.bicycle && !PBTerrain.onlyWalk?(terrain)
   end
@@ -56,14 +56,14 @@ class Game_Player < Game_Character
 
   def update_command
     if PBTerrain.isIce?(pbGetTerrainTag)
-      self.move_speed = 5     # Sliding on ice
+      self.move_speed = 4     # Sliding on ice
     elsif !moving? && !@move_route_forcing && $PokemonGlobal
       if $PokemonGlobal.bicycle
-        self.move_speed = 6   # Cycling
-      elsif pbCanRun? || $PokemonGlobal.surfing || $PokemonGlobal.diving
-        self.move_speed = 5   # Running, surfing or diving
+        self.move_speed = 5   # Cycling
+      elsif pbCanRun? || $PokemonGlobal.surfing
+        self.move_speed = 4   # Running, surfing
       else
-        self.move_speed = 4   # Walking
+        self.move_speed = 3   # Walking, diving
       end
     end
     super

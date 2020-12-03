@@ -78,7 +78,7 @@ class PokeBattle_Scene
       elsif Input.trigger?(Input::B) && mode==1   # Cancel
         pbPlayCancelSE
         break
-      elsif Input.trigger?(Input::F9) && $DEBUG   # Debug menu
+      elsif Input.trigger?(Input::F9) && $DEBUG    # Debug menu
         pbPlayDecisionSE
         ret = -2
         break

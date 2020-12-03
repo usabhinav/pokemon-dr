@@ -93,7 +93,7 @@ class PokemonTrainerCard_Scene
         sscreen.pbStartScreen([$Trainer.zygarde], 0)
         pbFadeInAndShow(@sprites,oldsprites)
       end
-    end 
+    end
   end
 
   def pbEndScene

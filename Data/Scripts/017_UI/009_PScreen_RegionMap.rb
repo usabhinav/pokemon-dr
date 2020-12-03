@@ -165,9 +165,15 @@ class PokemonRegionMap_Scene
 
   def pbSaveMapData
     File.open("PBS/townmap.txt","wb") { |f|
+      f.write(0xEF.chr)
+      f.write(0xBB.chr)
+      f.write(0xBF.chr)
+      f.write("\# "+_INTL("See the documentation on the wiki to learn how to edit this file."))
+      f.write("\r\n")
       for i in 0...@mapdata.length
         map = @mapdata[i]
-        return if !map
+        next if !map
+        f.write("\#-------------------------------\r\n")
         f.write(sprintf("[%d]\r\n",i))
         f.write(sprintf("Name=%s\r\nFilename=%s\r\n",csvQuote(map[0]),csvQuote(map[1])))
         for loc in map[2]
@@ -212,7 +218,7 @@ class PokemonRegionMap_Scene
         break
       end
     end
-    currentname = pbMessageFreeText(_INTL("Set the name for this point."),currentname,false,256) { pbUpdate }
+    currentname = pbMessageFreeText(_INTL("Set the name for this point."),currentname,false,250) { pbUpdate }
     if currentname
       if currentobj
         currentobj[2] = currentname

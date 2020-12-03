@@ -231,7 +231,7 @@ class PokemonPauseMenu
       elsif cmdLucario >= 0 && command == cmdLucario
         pbCallPocketApp
       elsif cmdTrainer>=0 && command==cmdTrainer
-        pbFadeOutIn { 
+        pbFadeOutIn {
           scene = PokemonTrainerCard_Scene.new
           screen = PokemonTrainerCardScreen.new(scene)
           screen.pbStartScreen

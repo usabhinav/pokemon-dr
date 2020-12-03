@@ -150,7 +150,6 @@ Moves = 0,DAZZLINGGLEAM,1,DAZZLINGGLEAM,1,IMPRISON,1,NASTYPLOT,1,ICEBEAM,1,ICESH
 Color = Blue
 Pokedex = It lives on mountains perpetually covered in snow and is revered as a deity incarnate. It appears draped in a blizzard.
 WildItemUncommon = SNOWBALL
-Evolutions = NINETALES,Item,ICESTONE
 #-------------------------------
 [DIGLETT,1]
 FormName = Alolan
@@ -1170,6 +1169,11 @@ FormName = Chill Drive
 FormName = Douse Drive
 #-------------------------------
 [GRENINJA,1]
+Abilities = BATTLEBOND
+HiddenAbility = BATTLEBOND
+Compatibility = Undiscovered
+#-------------------------------
+[GRENINJA,2]
 FormName = Ash-Greninja
 BaseStats = 72,145,67,132,153,71
 Abilities = BATTLEBOND

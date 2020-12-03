@@ -197,7 +197,7 @@ def pbEachFileSectionEx(f)
     end
     lineno += 1
     Graphics.update if lineno%500==0
-    Win32API.SetWindowText(_INTL("Processing line {1}",lineno)) if lineno%50==0
+    Win32API.SetWindowText(_INTL("Processing {1} line {2}",FileLineData.file,lineno)) if lineno%50==0
   }
   yield lastsection,sectionname  if havesection
 end
@@ -793,6 +793,7 @@ end
 def pbGetConst(mod,item,err)
   isDef = false
   begin
+    mod = Object.const_get(mod) if mod.is_a?(Symbol)
     isDef = mod.const_defined?(item.to_sym)
   rescue
     raise sprintf(err,item)
@@ -802,6 +803,7 @@ def pbGetConst(mod,item,err)
 end
 
 def getConstantName(mod,value)
+  mod = Object.const_get(mod) if mod.is_a?(Symbol)
   for c in mod.constants
     return c if mod.const_get(c.to_sym)==value
   end
@@ -809,6 +811,7 @@ def getConstantName(mod,value)
 end
 
 def getConstantNameOrValue(mod,value)
+  mod = Object.const_get(mod) if mod.is_a?(Symbol)
   for c in mod.constants
     return c if mod.const_get(c.to_sym)==value
   end
@@ -816,6 +819,7 @@ def getConstantNameOrValue(mod,value)
 end
 
 def setConstantName(mod,value,name)
+  mod = Object.const_get(mod) if mod.is_a?(Symbol)
   for c in mod.constants
     mod.send(:remove_const,c.to_sym) if mod.const_get(c.to_sym)==value
   end
@@ -823,6 +827,7 @@ def setConstantName(mod,value,name)
 end
 
 def removeConstantValue(mod,value)
+  mod = Object.const_get(mod) if mod.is_a?(Symbol)
   for c in mod.constants
     mod.send(:remove_const,c.to_sym) if mod.const_get(c.to_sym)==value
   end

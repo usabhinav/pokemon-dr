@@ -106,6 +106,7 @@ class PokeBattle_Battler
   def statusCount=(value)
     @statusCount = value
     @pokemon.statusCount = value if @pokemon
+    @battle.scene.pbRefreshOne(@index)
   end
 
   #=============================================================================
@@ -220,7 +221,7 @@ class PokeBattle_Battler
     stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
     stage = @stages[PBStats::SPEED] + 6
     speed = @speed*stageMul[stage]/stageDiv[stage]
-    speedMult = 0x1000
+    speedMult = 1.0
     # Ability effects that alter calculated Speed
     if abilityActive?
       speedMult = BattleHandlers.triggerSpeedCalcAbility(@ability,self,speedMult)
@@ -242,7 +243,7 @@ class PokeBattle_Battler
       speedMult *= 1.1
     end
     # Calculation
-    return [(speed.to_f*speedMult/0x1000).round,1].max
+    return [(speed*speedMult).round,1].max
   end
 
   def pbWeight
@@ -338,25 +339,56 @@ class PokeBattle_Battler
   end
   alias hasWorkingAbility hasActiveAbility?
 
-  def nonNegatableAbility?
+  # Applies to both losing self's ability (i.e. being replaced by another) and
+  # having self's ability be negated.
+  def unstoppableAbility?(abil = nil)
+    abil = @ability if !abil
     abilityBlacklist = [
-       # Form-changing abilities
-       :BATTLEBOND,
-       :DISGUISE,
-#       :FLOWERGIFT,                                       # This can be negated
-#       :FORECAST,                                         # This can be negated
-       :MULTITYPE,
-       :POWERCONSTRUCT,
-       :SCHOOLING,
-       :SHIELDSDOWN,
-       :STANCECHANGE,
-       :ZENMODE,
-       # Abilities intended to be inherent properties of a certain species
-       :COMATOSE,
-       :RKSSYSTEM
+      # Form-changing abilities
+      :BATTLEBOND,
+      :DISGUISE,
+#      :FLOWERGIFT,                                        # This can be stopped
+#      :FORECAST,                                          # This can be stopped
+      :MULTITYPE,
+      :POWERCONSTRUCT,
+      :SCHOOLING,
+      :SHIELDSDOWN,
+      :STANCECHANGE,
+      :ZENMODE,
+      # Abilities intended to be inherent properties of a certain species
+      :COMATOSE,
+      :RKSSYSTEM
     ]
-    abilityBlacklist.each do |abil|
-      return true if isConst?(@ability,PBAbilities,abil)
+    abilityBlacklist.each do |a|
+      return true if isConst?(abil, PBAbilities, a)
+    end
+    return false
+  end
+
+  # Applies to gaining the ability.
+  def ungainableAbility?(abil = nil)
+    abil = @ability if !abil
+    abilityBlacklist = [
+      # Form-changing abilities
+      :BATTLEBOND,
+      :DISGUISE,
+      :FLOWERGIFT,
+      :FORECAST,
+      :MULTITYPE,
+      :POWERCONSTRUCT,
+      :SCHOOLING,
+      :SHIELDSDOWN,
+      :STANCECHANGE,
+      :ZENMODE,
+      # Appearance-changing abilities
+      :ILLUSION,
+      :IMPOSTER,
+      # Abilities intended to be inherent properties of a certain species
+      :COMATOSE,
+      :RKSSYSTEM
+    ]
+    abilityBlacklist.each do |a|
+      return true if isConst?(abil, PBAbilities, a)
     end
     return false
   end

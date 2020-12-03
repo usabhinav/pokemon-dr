@@ -175,16 +175,16 @@ def pbEncounterEditorMap(encdata,map)
   enccmd = pbListWindow([])
   # This window displays the help text
   enchelp = Window_UnformattedTextPokemon.new("")
-  enchelp.x      = 256
+  enchelp.x      = Graphics.width/2
   enchelp.y      = 0
-  enchelp.width  = 224
+  enchelp.width  = Graphics.width/2 - 32
   enchelp.height = 96
   enchelp.z      = 99999
   mapinfos = load_data("Data/MapInfos.rxdata")
   mapname = mapinfos[map].name
   loop do
     enc = encdata[map]
-    enchelp.text = mapname
+    enchelp.text = _ISPRINTF("{1:03d}: {2:s}\r\nChoose a method",map,mapname)
     choice = pbEncounterEditorTypes(enc,enccmd)
     if !enc
       enc = [EncounterTypes::EnctypeDensities.clone,[]]
@@ -197,11 +197,11 @@ def pbEncounterEditorMap(encdata,map)
     elsif choice==-3
       ret = pbNewEncounterType(enc)
       if ret>=0
-        enchelp.text = _INTL("{1}\r\n{2}",mapname,EncounterTypes::Names[ret])
+        enchelp.text = _ISPRINTF("{1:03d}: {2:s}\r\n{3:s}",map,mapname,EncounterTypes::Names[ret])
         pbEditEncounterType(enc,ret)
       end
     else
-      enchelp.text = _INTL("{1}\r\n{2}",mapname,EncounterTypes::Names[choice])
+      enchelp.text = _ISPRINTF("{1:03d}: {2:s}\r\n{3:s}",map,mapname,EncounterTypes::Names[choice])
       pbEditEncounterType(enc,choice)
     end
   end
@@ -228,7 +228,7 @@ def pbTrainerTypeEditorNew(trconst)
   end
   trainertype = maxid+1
   trname = pbMessageFreeText(_INTL("Please enter the trainer type's name."),
-     (trconst) ? trconst.gsub(/_+/," ") : "",false,256)
+     (trconst) ? trconst.gsub(/_+/," ") : "",false,30)
   return -1 if trname=="" && !trconst
   # Create an internal name based on the trainer type's name if there is none.
   trconst = trname if !trconst
@@ -432,7 +432,7 @@ def pbTrainerBattleEditor
         else
           next
         end
-        trainername = pbMessageFreeText(_INTL("Now enter the trainer's name."),"",false,32)
+        trainername = pbMessageFreeText(_INTL("Now enter the trainer's name."),"",false,30)
         next if trainername==""
         trainerparty = pbGetFreeTrainerParty(trainertype,trainername)
         if trainerparty<0
@@ -669,13 +669,6 @@ def pbItemEditorNew(defaultname)
   itemdata = pbLoadItemsData
   # Get the first blank ID for the new item to use.
   maxid = PBItems.maxValue+1
-  for i in 1..PBItems.maxValue
-    name = itemdata[i][1]
-    if !name || name=="" || itemdata[i][ITEM_POCKET]==0
-      maxid = i
-      break
-    end
-  end
   index = maxid
   itemname = pbMessageFreeText(_INTL("Please enter the item's name."),
      (defaultname) ? defaultname.gsub(/_+/," ") : "",false,30)
@@ -811,7 +804,7 @@ def pbPokemonEditor
      [_INTL("BattlerAltitude"),ReadOnlyProperty,_INTL("Affects positioning of the Pokémon in battle. This is edited elsewhere.")],
      [_INTL("BattlerShadowX"),ReadOnlyProperty,_INTL("Affects positioning of the Pokémon in battle. This is edited elsewhere.")],
      [_INTL("BattlerShadowSize"),ReadOnlyProperty,_INTL("Affects positioning of the Pokémon in battle. This is edited elsewhere.")],
-     [_INTL("Evolutions"),EvolutionsProperty.new(PBEvolution::EVONAMES),_INTL("Evolution paths of this species.")],
+     [_INTL("Evolutions"),EvolutionsProperty.new,_INTL("Evolution paths of this species.")],
      [_INTL("Incense"),ItemProperty,_INTL("Item needed to be held by a parent to produce an egg of this species.")],
   ]
   pbListScreenBlock(_INTL("Pokémon species"),SpeciesLister.new(selection,false)) { |button,index|
@@ -1086,9 +1079,9 @@ def pbRegionalDexEditor(dex)
   viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
   viewport.z = 99999
   info = Window_AdvancedTextPokemon.new(_INTL("Z+Up/Down: Rearrange entries\nZ+Right: Insert new entry\nZ+Left: Delete entry\nF: Clear entry"))
-  info.x        = 256
+  info.x        = Graphics.width/2
   info.y        = 64
-  info.width    = Graphics.width-256
+  info.width    = Graphics.width/2
   info.height   = Graphics.height-64
   info.viewport = viewport
   info.z        = 2
@@ -1229,16 +1222,16 @@ def pbRegionalDexEditorMain
   cmdwin.viewport = viewport
   cmdwin.z        = 2
   title = Window_UnformattedTextPokemon.new(_INTL("Regional Dexes Editor"))
-  title.x        = 256
+  title.x        = Graphics.width/2
   title.y        = 0
-  title.width    = Graphics.width-256
+  title.width    = Graphics.width/2
   title.height   = 64
   title.viewport = viewport
   title.z        = 2
   info = Window_AdvancedTextPokemon.new(_INTL("Z+Up/Down: Rearrange Dexes"))
-  info.x        = 256
+  info.x        = Graphics.width/2
   info.y        = 64
-  info.width    = Graphics.width-256
+  info.width    = Graphics.width/2
   info.height   = Graphics.height-64
   info.viewport = viewport
   info.z        = 2
@@ -1387,16 +1380,16 @@ def pbAnimationsOrganiser
   cmdwin.viewport = viewport
   cmdwin.z        = 2
   title = Window_UnformattedTextPokemon.new(_INTL("Animations Organiser"))
-  title.x        = 256
+  title.x        = Graphics.width/2
   title.y        = 0
-  title.width    = Graphics.width-256
+  title.width    = Graphics.width/2
   title.height   = 64
   title.viewport = viewport
   title.z        = 2
   info = Window_AdvancedTextPokemon.new(_INTL("Z+Up/Down: Swap\nZ+Left: Delete\nZ+Right: Insert"))
-  info.x        = 256
+  info.x        = Graphics.width/2
   info.y        = 64
-  info.width    = Graphics.width-256
+  info.width    = Graphics.width/2
   info.height   = Graphics.height-64
   info.viewport = viewport
   info.z        = 2

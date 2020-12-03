@@ -203,6 +203,8 @@ def pbDebugMenuCommands(showall=true)
     _INTL("Fully compile all data."))
   commands.add("othermenu","debugconsole",_INTL("Debug Console"),
     _INTL("Open the Debug Console."))
+  commands.add("othermenu","invalidtiles",_INTL("Fix Invalid Tiles"),
+    _INTL("Scans all maps and erases non-existent tiles."))
 
   return commands
 end
@@ -343,7 +345,7 @@ def pbDebugMenuActions(cmd="",sprites=nil,viewport=nil)
           params.setCancelValue(0)
           level = pbMessageChooseNumber(_INTL("Set the wild {1}'s level.",PBSpecies.getName(species)),params)
           if level>0
-            pkmn.push(pbNewPkmn(species,level))
+            pkmn.push(pbGenerateWildPokemon(species,level))
           end
         end
       else                                     # Edit a Pokémon
@@ -361,7 +363,7 @@ def pbDebugMenuActions(cmd="",sprites=nil,viewport=nil)
     battle = pbListScreen(_INTL("SINGLE TRAINER"),TrainerBattleLister.new(0,false))
     if battle
       trainerdata = battle[1]
-      pbTrainerBattle(trainerdata[0],trainerdata[1],"...",false,trainerdata[4],true)
+      pbTrainerBattle(trainerdata[0],trainerdata[1],nil,false,trainerdata[4],true)
     end
   when "testtrainerbattleadvanced"
     trainers = []
@@ -791,6 +793,8 @@ def pbDebugMenuActions(cmd="",sprites=nil,viewport=nil)
     pbDisposeMessageWindow(msgwindow)
   when "debugconsole"
     Console::setup_console
+  when "invalidtiles"
+    pbDebugFixInvalidTiles
   end
   return false
 end

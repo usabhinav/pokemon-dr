@@ -169,7 +169,7 @@ class PokeBattle_Battle
             idxPartyForName = idxPartyNew
             enemyParty = pbParty(idxBattler)
             if isConst?(enemyParty[idxPartyNew].ability,PBAbilities,:ILLUSION)
-              idxPartyForName = pbGetLastPokeInTeam(idxBattler)
+              idxPartyForName = pbLastInTeam(idxBattler)
             end
             if pbDisplayConfirm(_INTL("{1} is about to send in {2}. Will you switch your Pokémon?",
                opponent.fullname,enemyParty[idxPartyForName].name))
@@ -223,11 +223,11 @@ class PokeBattle_Battle
   end
 
   # Actually performs the recalling and sending out in all situations.
-  def pbRecallAndReplace(idxBattler,idxParty,batonPass=false)
+  def pbRecallAndReplace(idxBattler,idxParty,randomReplacement=false,batonPass=false)
     @scene.pbRecall(idxBattler) if !@battlers[idxBattler].fainted?
     @battlers[idxBattler].pbAbilitiesOnSwitchOut   # Inc. primordial weather check
     @scene.pbShowPartyLineup(idxBattler&1) if pbSideSize(idxBattler)==1
-    pbMessagesOnReplace(idxBattler,idxParty)
+    pbMessagesOnReplace(idxBattler,idxParty) if !randomReplacement
     pbReplace(idxBattler,idxParty,batonPass)
   end
 
@@ -245,7 +245,7 @@ class PokeBattle_Battle
         pbDisplayBrief(_INTL("{1}, switch out! Come back!",battler.name))
       end
     else
-      owner = pbGetOwnerName(b.index)
+      owner = pbGetOwnerName(battler.index)
       pbDisplayBrief(_INTL("{1} withdrew {2}!",owner,battler.name))
     end
   end
