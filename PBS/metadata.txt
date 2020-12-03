@@ -1,0 +1,96 @@
+﻿#-------------------------------
+[000]
+PlayerA=POKEMONTRAINER_ZYRO,trchar000,boy_bike,boy_surf_offset,boy_run,boy_dive_offset,boy_fish_offset,boy_fishsurf_offset
+PlayerB=POKEMONTRAINER_ZYREE,trchar001,girl_bike,girl_surf_offset,girl_run,girl_dive_offset,girl_fish_offset,girl_fishsurf_offset
+TrainerVictoryME=Victory Sound.mp3
+WildVictoryME=Victory Sound.mp3
+TrainerBattleBGM=Persona 5 Last suprise.mp3
+SurfBGM=Ship.mid
+BicycleBGM=Airship.mid
+Home=7,37,30,2
+WildBattleBGM=Final Fantasy VII - Let the battles begin.mp3
+#-------------------------------
+[002]
+# Deku Map
+ShowArea=true
+#-------------------------------
+[003]
+# Deku Route
+ShowArea=true
+#-------------------------------
+[004]
+# Lazarus Swamp
+MapSize=0,
+ShowArea=true
+#-------------------------------
+[005]
+# Lurelin Village
+ShowArea=true
+#-------------------------------
+[007]
+# Main Building
+ShowArea=true
+#-------------------------------
+[009]
+# Meridian Town
+ShowArea=true
+#-------------------------------
+[011]
+# King's Path
+ShowArea=true
+#-------------------------------
+[015]
+# King's Club
+ShowArea=true
+#-------------------------------
+[019]
+# Cindy's House
+ShowArea=true
+#-------------------------------
+[020]
+# Kid's House
+ShowArea=true
+#-------------------------------
+[022]
+# King's Club Entrance
+ShowArea=true
+#-------------------------------
+[023]
+# Throne Room
+ShowArea=true
+#-------------------------------
+[027]
+# Green Bay Beach
+ShowArea=true
+#-------------------------------
+[029]
+# Old Dale Town
+ShowArea=true
+#-------------------------------
+[034]
+# Pepper Ridge Farm
+ShowArea=true
+#-------------------------------
+[035]
+# Observatory Interior
+ShowArea=true
+#-------------------------------
+[036]
+# Green Bay Town
+ShowArea=true
+#-------------------------------
+[037]
+# Green Bay Beach
+ShowArea=true
+#-------------------------------
+[038]
+# Pepper Ridge Farm
+ShowArea=true
+#-------------------------------
+[039]
+# Observatory Route
+ShowArea=true
+#-------------------------------
+[077]
+# Meridian Route
+ShowArea=true

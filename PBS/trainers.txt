@@ -1,0 +1,336 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+[JOEL,Joel,1]
+LoseText = "..."
+Pokemon = VIKAVOLT,11
+    Moves = THUNDERBOLT,ENERGYBALL,BUGBUZZ,AIRSLASH
+#-------------------------------
+[JOEL,Joel,2]
+LoseText = "..."
+Pokemon = VIKAVOLT,15
+    Moves = THUNDERBOLT,ENERGYBALL,BUGBUZZ,AIRSLASH
+#-------------------------------
+[NEZHASOLDIER,Soldier,1]
+LoseText = "..."
+Pokemon = HONEDGE,9
+    Moves = PURSUIT,FURYCUTTER,SWORDSDANCE,AERIALACE
+#-------------------------------
+[NEZHASOLDIER,Soldier,2]
+LoseText = "..."
+Pokemon = HOUNDOUR,9
+    Moves = BITE,FIREFANG,HOWL,SUPERFANG
+#-------------------------------
+[NEZHASOLDIER,Commander]
+LoseText = "..."
+Pokemon = DOUBLADE,10
+    Moves = PURSUIT,SWORDSDANCE,BRUTALSWING,CUT
+#-------------------------------
+[BISON,Bison,1]
+LoseText = "..."
+Pokemon = CONKELDURR,12
+    Moves = DRAINPUNCH,ROCKSLIDE,EARTHQUAKE,KNOCKOFF
+#-------------------------------
+[BISON,Bison,2]
+LoseText = "..."
+Pokemon = CONKELDURR,15
+    Moves = DRAINPUNCH,ROCKSLIDE,EARTHQUAKE,KNOCKOFF
+#-------------------------------
+[LEAH,Leah]
+LoseText = "..."
+Pokemon = AROMATISSE,11
+    Moves = MOONBLAST,PSYCHIC,HEALPULSE,HELPINGHAND
+#-------------------------------
+[FIONA,Fiona,1]
+LoseText = "..."
+Pokemon = REUNICLUS,13
+    Moves = PSYCHIC,WATERPULSE,REFLECT,FIREPUNCH
+    Shiny = yes
+#-------------------------------
+[FIONA,Fiona,2]
+LoseText = "..."
+Pokemon = REUNICLUS,16
+    Moves = PSYCHIC,WATERPULSE,REFLECT,FIREPUNCH
+    Shiny = yes
+#-------------------------------
+[BIFF,Biff]
+LoseText = "..."
+Pokemon = ROCKRUFF,7
+    Moves = LEER,TACKLE,SANDATTACK,BITE
+    Ability = 0
+Pokemon = GRANBULL,8
+    Moves = SCARYFACE,BITE,FIREFANG,HEADBUTT
+    Ability = 0
+#-------------------------------
+[BUGCATCHER_F,Janet]
+LoseText = "..."
+Pokemon = NINCADA,12
+    Moves = HARDEN,SLASH,BUGBITE,MUDSLAP
+Pokemon = SURSKIT,12
+    Moves = PSYBEAM,BUBBLEBEAM,INFESTATION,MUDSHOT
+Pokemon = YANMA,12
+    Moves = DETECT,STRUGGLEBUG,SUPERSONIC,WINGATTACK
+#-------------------------------
+[BUGCATCHER_F,Kayla]
+LoseText = "..."
+Pokemon = DEWPIDER,12
+    Moves = SPIDERWEB,STICKYWEB,BUBBLEBEAM,BITE
+Pokemon = VENIPEDE,13
+    Moves = PURSUIT,POISONTAIL,DEFENSECURL,SCREECH
+#-------------------------------
+[BUGCATCHER_F,Rose]
+LoseText = "..."
+Pokemon = CARNIVINE,11
+    Moves = RAZORLEAF,INFESTATION,BITE,INGRAIN
+Pokemon = FROAKIE,15
+    Moves = BOUNCE,WATERPULSE,QUICKATTACK,TOXICSPIKES
+#-------------------------------
+[YOUNGSTER_M,Roger]
+LoseText = "..."
+Pokemon = FOONGUS,12
+    Moves = SYNTHESIS,GROWTH,MEGADRAIN,FEINTATTACK
+Pokemon = MORELULL,13
+    Moves = CONFUSION,HYPNOSIS,MEGADRAIN,FAIRYWIND
+#-------------------------------
+[YOUNGSTER_M,Nathan]
+LoseText = "..."
+Pokemon = TANGELA,13
+    Moves = STUNSPORE,POISONPOWDER,SLEEPPOWDER,VINEWHIP
+Pokemon = BELLSPROUT,13
+    Moves = SLAM,ENCORE,ACIDSPRAY,INGRAIN
+Pokemon = TYMPOLE,13
+    Moves = REST,SLEEPTALK,WHIRLPOOL,MUDBOMB
+#-------------------------------
+[FISHERMAN_M,Gerald]
+LoseText = "..."
+Pokemon = WOOPER,12
+    Moves = AMNESIA,TAILWHIP,SLAM,DOUBLEKICK
+#-------------------------------
+[FISHERMAN_M,Harold]
+LoseText = "..."
+Pokemon = FROAKIE,14
+    Moves = QUICKATTACK,WATERPULSE,TOXICSPIKES,MUDSLAP
+Pokemon = POLIWAG,14
+    Moves = BUBBLEBEAM,ICYWIND,HYPNOSIS,MUDSHOT
+#-------------------------------
+[YOUNGSTER_M,AJ]
+LoseText = "..."
+Pokemon = RATTATA,12
+    Moves = BITE,FOCUSENERGY,QUICKATTACK,TAUNT
+    Form = 1
+Pokemon = POOCHYENA,13
+    Moves = BITE,TAUNT,TACKLE,THIEF
+#-------------------------------
+[BUGCATCHER_F,Nephenee]
+LoseText = "..."
+Pokemon = COTTONEE,11
+    Moves = STUNSPORE,LEECHSEED,TOXIC,FAKETEARS
+Pokemon = PETILIL,11
+    Moves = SLEEPPOWDER,LEECHSEED,ENCORE,CHARM
+#-------------------------------
+[BUGCATCHER_F,Miya]
+LoseText = "..."
+Pokemon = HOPPIP,12
+    Moves = SYNTHESIS,POISONPOWDER,TACKLE,FAIRYWIND
+Pokemon = HOOTHOOT,13
+    Moves = CONFUSION,ROOST,PECK,HYPNOSIS
+Pokemon = FARFETCHD,13
+    Moves = KNOCKOFF,ROOST,AERIALACE,WORKUP
+#-------------------------------
+[PUGILIST_M,Jeremy]
+LoseText = "..."
+Pokemon = YUNGOOS,13
+    Moves = WORKUP,ENDEAVOR,PURSUIT,PAYBACK
+Pokemon = PIKIPEK,13
+    Moves = ROCKSMASH,WORKUP,AERIALACE,SUPERSONIC
+Pokemon = BUNNELBY,14
+    Moves = SMACKDOWN,BULKUP,DOUBLESLAP,ROLLOUT
+#-------------------------------
+[YOUNGSTER_M,Zelgius]
+LoseText = "..."
+Pokemon = YUNGOOS,13
+    Moves = WORKUP,ENDEAVOR,PURSUIT,PAYBACK
+Pokemon = PIKIPEK,13
+    Moves = ROCKSMASH,WORKUP,AERIALACE,SUPERSONIC
+Pokemon = BUNNELBY,14
+    Moves = SMACKDOWN,BULKUP,DOUBLESLAP,ROLLOUT
+#-------------------------------
+[SLAVE_M,Elliot]
+LoseText = "..."
+Pokemon = PERSIAN,15
+    Moves = CHARM,SWIFT,ASSIST,BITE
+    Ability = 1
+    Form = 1
+#-------------------------------
+[SLAVE_F,Martha]
+LoseText = "..."
+Pokemon = PERSIAN,15
+    Moves = CHARM,SWIFT,CHARM,BITE
+    Ability = 1
+    Form = 1
+#-------------------------------
+[NEZHASECONDFORM,Soldier,1]
+LoseText = "..."
+Pokemon = AEGISLASH,28
+    Moves = SHADOWSNEAK,IRONHEAD,KINGSSHIELD,SWORDSDANCE
+#-------------------------------
+[NEZHASOLDIER,Soldier,3]
+LoseText = "..."
+Pokemon = HONEDGE,14
+    Moves = SHADOWSNEAK,SLASH,CONFUSERAY,FURYCUTTER
+#-------------------------------
+[NEZHASOLDIER,Soldier,4]
+LoseText = "..."
+Pokemon = HOUNDOUR,13
+    Moves = THUNDERFANG,BITE,EMBER,SMOG
+#-------------------------------
+[FARMER_F,Sofia]
+LoseText = "..."
+Pokemon = MAREEP,18
+    Moves = THUNDERSHOCK,CONFUSERAY,SWIFT,COTTONSPORE
+Pokemon = SKITTY,18
+    Moves = DOUBLESLAP,PLAYROUGH,SING,TACKLE
+#-------------------------------
+[FARMER_M,Eugene]
+LoseText = "..."
+Pokemon = SWABLU,19
+    Moves = FURYATTACK,DOUBLETEAM,AERIALACE,ROOST
+Pokemon = MILTANK,19
+    Moves = ROCKTOMB,DIZZYPUNCH,ROLLOUT,MILKDRINK
+#-------------------------------
+[FISHERMAN_M,Gasfut]
+LoseText = "..."
+Pokemon = MARSHTOMP,19
+    Moves = MUDSHOT,ROCKTOMB,WATERPULSE,POWERUPPUNCH
+Pokemon = FLETCHINDER,19
+    Moves = UTURN,AGILITY,ROOST,AERIALACE
+#-------------------------------
+[FISHERMAN_M,Eldrie]
+LoseText = "..."
+Pokemon = MARILL,19
+    Moves = BUBBLEBEAM,ROLLOUT,ICYWIND,SWIFT
+#-------------------------------
+[YOUNGSTER_M,Archie]
+LoseText = "..."
+Pokemon = PIDGEOTTO,20
+    Moves = QUICKATTACK,PURSUIT,UTURN,AERIALACE
+Pokemon = BELLSPROUT,17
+    Moves = POISONPOWDER,MAGICALLEAF,GIGADRAIN,FACADE
+Pokemon = COMBEE,18
+    Moves = TAILWIND,STRINGSHOT,AIRCUTTER,GUST,,M
+#-------------------------------
+[BUGCATCHER_F,Dakira]
+LoseText = "..."
+Pokemon = NINCADA,18
+    Moves = FURYSWIPES,BUGBITE,SILVERWIND,FEINTATTACK
+Pokemon = BEEDRILL,19
+    Moves = PURSUIT,ACROBATICS,BUGBITE,KNOCKOFF
+#-------------------------------
+[LASS_1,Sasha]
+LoseText = "..."
+Pokemon = CLEFFA,17
+    Moves = SWEETKISS,SIGNALBEAM,REFLECT,ICYWIND
+Pokemon = LOPUNNY,20
+    Moves = QUICKATTACK,CIRCLETHROW,LOWSWEEP,BRUTALSWING
+#-------------------------------
+[LASS_2,Karla]
+LoseText = "..."
+Pokemon = RALTS,20
+    Moves = CONFUSION,CALMMIND,MAGICALLEAF,SHOCKWAVE
+#-------------------------------
+[SCIENTIST_M,Bill]
+LoseText = "..."
+Pokemon = DUOSION,32
+    Moves = PSYSHOCK,SHADOWBALL,CALMMIND,TRICKROOM
+Pokemon = GOTHORITA,32
+    Moves = TOXIC,FUTURESIGHT,LIGHTSCREEN,SHOCKWAVE
+#-------------------------------
+[SCIENTIST_F,Amy]
+LoseText = "..."
+Pokemon = MAGNETON,30
+    Moves = SIGNALBEAM,DOUBLETEAM,LIGHTSCREEN,THUNDERBOLT
+#-------------------------------
+[SCIENTIST_F,Jenny]
+LoseText = "..."
+Pokemon = MALAMAR,30
+    Moves = PSYSHOCK,AERIALACE,KNOCKOFF,SIGNALBEAM
+Pokemon = STARMIE,33
+    Moves = RECOVER,DAZZLINGGLEAM,SCALD,POWERGEM
+#-------------------------------
+[SCIENTIST_M,Bob]
+LoseText = "..."
+Pokemon = OMANYTE,32
+    Moves = HIDDENPOWER,SANDSTORM,EARTHPOWER,IRONDEFENSE
+Pokemon = FERROSEED,32
+    Moves = STEALTHROCK,TOXIC,LEECHSEED,PROTECT
+#-------------------------------
+[SCIENTIST_M,Mark]
+LoseText = "..."
+Pokemon = ROTOM,32
+    Moves = OMINOUSWIND,VOLTSWITCH,WILLOWISP,PAINSPLIT
+    Form = 4
+Pokemon = ELECTABUZZ,34
+    Moves = BODYSLAM,THUNDERSHOCK,MEGAPUNCH,COUNTER
+#-------------------------------
+[MARYSHELLEY,Mary Shelley]
+LoseText = "..."
+Items = SUPERPOTION,SUPERPOTION,LUMBERRY,PECHABERRY
+Pokemon = LILEEP,33
+    Item = EVIOLITE
+    Moves = GIGADRAIN,RECOVER,TOXIC,ANCIENTPOWER
+Pokemon = CONKELDURR,37
+    Moves = DRAINPUNCH,FACADE,LOWSWEEP,POISONJAB
+Pokemon = MILOTIC,37
+    Item = LEFTOVERS
+    Moves = SCALD,MIRRORCOAT,DRAGONPULSE,SAFEGUARD
+#-------------------------------
+[WLYDER,???]
+LoseText = "..."
+Pokemon = ACCELGOR,23
+    Moves = MEGADRAIN,SIGNALBEAM,VENOSHOCK,BODYSLAM
+Pokemon = FROGADIER,22
+    Moves = WATERPULSE,ICEPUNCH,THIEF,AERIALACE
+Pokemon = KROOKODILE,22
+    Moves = SANDTOMB,BITE,THIEF,SHADOWCLAW
+#-------------------------------
+[NEZHASOLDIER,Soldier,5]
+LoseText = "..."
+Pokemon = GOLETT,21
+    Moves = SHADOWPUNCH,MEGAPUNCH,FIREPUNCH,STOMPINGTANTRUM
+#-------------------------------
+[NEZHASOLDIER,Soldier,6]
+LoseText = "..."
+Pokemon = HONEDGE,19
+    Moves = SLASH,SHADOWSNEAK,AERIALACE,GYROBALL
+Pokemon = SNEASEL,20
+    Moves = AGILITY,PUNISHMENT,XSCISSOR,POISONJAB
+#-------------------------------
+[CADET_F,April]
+LoseText = "..."
+Pokemon = BUNNELBY,1
+    Item = LEFTOVERS
+    Moves = QUICKATTACK,DOUBLEKICK,TOXIC,BRICKBREAK
+Pokemon = FROGADIER,1
+    Moves = SMOKESCREEN,DOUBLETEAM,ICEPUNCH,WATERPULSE
+#-------------------------------
+[CADET_M,Jeremy]
+LoseText = "..."
+Pokemon = ARAQUANID,1
+    Item = MYSTICWATER
+    Moves = BUBBLEBEAM,RAINDANCE,AQUARING,WATERPULSE
+#-------------------------------
+[CADET_M,Aaron]
+LoseText = "..."
+Pokemon = FLETCHINDER,1
+    Moves = ROOST,EMBER,UTURN,AERIALACE
+Pokemon = TANGROWTH,1
+    Item = BIGROOT
+    Moves = MEGADRAIN,KNOCKOFF,TOXIC,FACADE
+#-------------------------------
+[CADET_F,Kelly]
+LoseText = "..."
+Pokemon = PIDGEOTTO,1
+    Moves = ROOST,AERIALACE,STEELWING,TAILWIND
+Pokemon = SWABLU,1
+    Moves = TAKEDOWN,ICEBEAM,TOXIC,AERIALACE
+Pokemon = FARFETCHD,1
+    Moves = SWORDSDANCE,STEELWING,NIGHTSLASH,ROOST

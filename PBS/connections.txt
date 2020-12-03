@@ -1,0 +1,24 @@
+# Deku Map (2) - Lurelin Village (5)
+2,East,0,5,West,0
+# Deku Route (3) - Lurelin Village (5)
+3,East,0,5,West,62
+# Deku Route (3) - Deku Map (2)
+3,North,0,2,South,0
+# Meridian Town (9) - Meridian Route (77)
+9,North,0,77,South,27
+# King's Path (11) - King's Club Entrance (22)
+11,South,3,22,North,0
+# Meridian Town (9) - King's Path (11)
+9,South,9,11,North,0
+# Observatory Route (39) - Pepper Ridge Farm (38)
+39,South,0,38,North,0
+# Pepper Ridge Farm (34) - Pepper Ridge Farm (38)
+34,East,27,38,West,0
+# Green Bay Town (36) - Pepper Ridge Farm (38)
+36,North,73,38,South,0
+# Pepper Ridge Farm (34) - Observatory Route (39)
+34,East,0,39,West,0
+# Green Bay Town (36) - Pepper Ridge Farm (34)
+36,North,9,34,South,0
+# Green Bay Beach (37) - Green Bay Town (36)
+37,East,0,36,West,6

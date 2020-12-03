@@ -1,0 +1,35 @@
+#-------------------------------
+[1]
+Name = Spread the Word
+InternalName = SPREADTHEWORD
+Summary = Your primary mission as a member of the resistance: pass on 'for the glory of mankind'.
+Completed = COMPLETED MESSAGE HERE.
+Stage = 1
+    Description = Pass on 'for the glory of mankind'.
+    Location = Green Bay Town
+#-------------------------------
+[2]
+Name = Monkey Island
+InternalName = MONKEYISLAND
+Summary = A man's daughter has been kidnapped! Find Monkey Island and retrieve her.
+Completed = GOOD JOB M8.
+Stage = 1
+    Description = Go to Monkey Island.
+    Location = Monkey Island
+#-------------------------------
+[3]
+Name = Dr. Jekyll's Laboratories
+InternalName = DRJEKYLLSLABORATORIES
+Summary = Investigate the mysterious Dr. Jekyll's Laboratory.
+Completed = Mary Shelley has entrusted you with the Blade Fossil... Protect it well.
+Stage = 1
+    Description = Talk to scientists.
+    Count = 6
+    Location = Green Bay Observatory
+Stage = 2
+    Description = Talk to more scientists.
+    Count = 3
+    Location = Green Bay Observatory
+Stage = 3
+    Description = Talk to Mary Shelley.
+    Location = Green Bay Observatory
