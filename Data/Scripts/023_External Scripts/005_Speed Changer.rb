@@ -1,4 +1,4 @@
-# CHANGED: Script to change all event speeds from 3 to 4
+# CHANGED: Script to change all event speeds from 4 to 3
 
 =begin
 
@@ -11,8 +11,8 @@ for n in 1..999
     event = map.events[i]
     for page_index in 0...event.pages.length
       page = event.pages[page_index]
-      if page.move_speed == 3
-        page.move_speed = 4
+      if page.move_speed == 4
+        page.move_speed = 3
       end
       list = page.list
       for index in 0...list.length
@@ -20,8 +20,8 @@ for n in 1..999
         params = list[index].parameters
         if command == 209 # Set Move Route
           for j in params[1].list
-            if j.code == 29 && j.parameters[0] == 3
-              j.parameters[0] = 4
+            if j.code == 29 && j.parameters[0] == 4
+              j.parameters[0] = 3
             end
           end
         end
