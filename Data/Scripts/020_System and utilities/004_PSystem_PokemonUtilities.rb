@@ -389,6 +389,7 @@ end
 #===============================================================================
 def pbHealAll
   $Trainer.party.each { |pkmn| pkmn.heal }
+  $Trainer.zygarde.heal # CHANGED: Heal Zygarde
 end
 
 

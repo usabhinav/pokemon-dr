@@ -854,6 +854,7 @@ end
 
 def pbGetMapNameFromId(id)
   map=pbGetBasicMapNameFromId(id)
+  gsubPN(map) # CHANGED: Multiple Protagonists
   map.gsub!(/\\PN/,$Trainer.name) if $Trainer
   return map
 end
@@ -1029,6 +1030,7 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
       next $game_actors[m].name
     }
   end
+  gsubPN(text) if defined?(gsubPN) # CHANGED: Multiple Protagonists
   text.gsub!(/\\pn/i,$Trainer.name) if $Trainer
   text.gsub!(/\\pm/i,_INTL("${1}",$Trainer.money.to_s_formatted)) if $Trainer
   text.gsub!(/\\n/i,"\n")
@@ -1080,7 +1082,8 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   ### Controls
   textchunks=[]
   controls=[]
-  while text[/(?:\\(f|ff|ts|cl|me|se|wt|wtnp|ch)\[([^\]]*)\]|\\(g|cn|wd|wm|op|cl|wu|\.|\||\!|\^))/i]
+  # CHANGED: Added "gp" command for money window in Pocket App Pokemon Storage
+  while text[/(?:\\(w|f|ff|ts|cl|me|se|wt|wtnp|ch)\[([^\]]*)\]|\\(gp|g|cn|wd|wm|op|cl|wu|\.|\||\!|\^))/i]
     textchunks.push($~.pre_match)
     if $~[1]
       controls.push([$~[1].downcase,$~[2],-1])
@@ -1162,6 +1165,55 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
     facewindow.z        = msgwindow.z
   end
   atTop = (msgwindow.y==0)
+
+# CHANGED: Positioning for speech arrow and player's face  
+talkingEventID = pbGet(30)
+arrowSprite = nil
+expression = pbGet(31)
+faceSprite = nil
+if talkingEventID > 0
+  talkingEvent = $game_map.events[talkingEventID]
+  picY = talkingEvent.screen_y - SCREEN_ZOOM * 32
+  picHeight = Graphics.height - msgwindow.height - picY + 5
+  if picHeight > 0
+    picWidth = 256 * (picHeight / 192)
+    if talkingEvent.screen_x <= Graphics.width / 2
+      picX = talkingEvent.screen_x
+      if picWidth + picX > Graphics.width - 7.0
+        picWidth = Graphics.width - 7.0 - picX
+      end
+      arrowSprite = IconSprite.new(picX, picY, msgwindow.viewport)
+      arrowSprite.setBitmap("Graphics/Pictures/arrowRight.png")
+      arrowSprite.z = msgwindow.z
+      arrowSprite.zoom_x = picWidth / 256
+      arrowSprite.zoom_y = picHeight / 192
+    else
+      picX = talkingEvent.screen_x - picWidth
+      if picX < 7.0
+        picX = 7.0
+        picWidth = talkingEvent.screen_x - picX
+      end
+      arrowSprite = IconSprite.new(picX, picY, msgwindow.viewport)
+      arrowSprite.setBitmap("Graphics/Pictures/arrowLeft.png")
+      arrowSprite.z = msgwindow.z
+      arrowSprite.zoom_x = picWidth / 256
+      arrowSprite.zoom_y = picHeight / 192
+    end
+  end
+end
+if expression.is_a?(String) && expression.length > 0
+  trainerID = sprintf("%.3d", $Trainer.metaID)
+  expression = "_#{expression}"
+  faceX = Graphics.width - 140 - 19
+  # Special case for Zyro Shy face
+  faceX -= 25 if expression == "_shy" && trainerID == "000"
+  faceY = Graphics.height - msgwindow.height - 135
+  filename = "Graphics/Pictures/Faces/trface#{trainerID}#{expression}.png"
+  faceSprite = IconSprite.new(faceX, faceY, msgwindow.viewport)
+  faceSprite.setBitmap(filename)
+  faceSprite.z = msgwindow.z
+end
+
   ########## Show text #############################
   msgwindow.text = text
   Graphics.frame_reset if Graphics.frame_rate>40
@@ -1262,6 +1314,18 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
     break if (!letterbyletter || commandProc || commands) && !msgwindow.busy?
   end
   Input.update   # Must call Input.update again to avoid extra triggers
+  
+  # CHANGED: Erase speech arrow
+  if talkingEventID != 0
+    arrowSprite.dispose if arrowSprite
+    pbSet(30, 0)
+  end
+  # CHANGED: Erase face sprite
+  if expression.is_a?(String) && expression.length > 0
+    faceSprite.dispose if faceSprite
+    pbSet(31, "")
+  end
+  
   msgwindow.letterbyletter=oldletterbyletter
   if commands
     $game_variables[cmdvariable]=pbShowCommands(msgwindow,commands,cmdIfCancel)

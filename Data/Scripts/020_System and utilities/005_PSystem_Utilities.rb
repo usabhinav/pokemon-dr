@@ -1195,3 +1195,103 @@ def pbRecordTrainer
   end
   return false
 end
+
+# CHANGED: Added method to turn events at random
+def pbTurnEventsAtRandom(delay, turnCount, *events)
+  for i in 0..turnCount
+    for j in 0..events.length-1
+      pbMoveRoute($game_map.events[events[j]], [PBMoveRoute::TurnRandom])
+    end
+    pbWait(delay)
+  end
+end
+
+# CHANGED: Added method to give commands to multiple events at once
+def pbCommandEvents(command, *events)
+  for i in 0..events.length-1
+    if events[i] == -1
+      pbMoveRoute($game_player, command)
+    else
+      pbMoveRoute($game_map.events[events[i]], command)
+    end
+  end
+end
+
+# CHANGED: Added method to put exclamation marks above multiple events
+def pbExclaimEvents(*events)
+  arr = Array.new
+  for i in 0..events.length-1
+    arr.push(get_character(events[i]))
+  end
+  pbExclaim(arr)
+end
+
+# CHANGED: Method to set up Zyree's character
+def pbZyreeTrainerName
+  pbSwitchCharacter(1, "Zyree")
+  $Trainer.zygarde.trainerID = $Trainer.id
+  $Trainer.zygarde.form = 1
+  noivern = PokeBattle_Pokemon.new(PBSpecies::NOIVERN, 12, $Trainer)
+  noivern.makeShiny
+  noivern.makeFemale
+  noivern.pbLearnMove(getConst(PBMoves,:DRAGONPULSE))
+  noivern.pbLearnMove(getConst(PBMoves,:WINGATTACK))
+  noivern.pbLearnMove(getConst(PBMoves,:SUPERSONIC))
+  noivern.pbLearnMove(getConst(PBMoves,:ROOST))
+  noivern.setItem(getConst(PBItems,:DRAGONFANG))
+  pbAddPokemonSilent(noivern)
+  pbSwitchCharacter(0)
+end
+
+# CHANGED: Method to update karma
+def pbChangeKarmaBy(diff)
+  pbSet(33, pbGet(33) + diff)
+  if pbGet(33) > MAXIMUM_KARMA
+    pbSet(33, MAXIMUM_KARMA)
+  elsif pbGet(33) < -MAXIMUM_KARMA
+    pbSet(33, -MAXIMUM_KARMA)
+  end
+end
+
+# CHANGED: Method to set player's expression
+def pbSetExpression(expression="expressionless")
+  pbSet(31, expression)
+end
+
+# CHANGED: Method to choose gamemode at start of game
+def pbChooseGamemode
+  pbMessage(_INTL("Please select a gamemode."))
+  loop do
+    modes = [_INTL("Normal"), _INTL("Hard"), _INTL("Extreme"), _INTL("Nuzlocke")]
+    command = pbShowCommandsWithHelp(nil, modes,
+    [_INTL("Recommended for beginners or those who want to enjoy the story."),
+     _INTL("For those with experience in DR and want a bit of a challenge."),
+     _INTL("Tired of Hard mode already? This really shows if you've got the skills."),
+     _INTL("You like the thrill of a challenge; not for the faint of heart.")
+    ])
+    if pbConfirmMessage(_INTL("You have chosen #{modes[command]} mode. Is this okay?"))
+      pbSet(32, command)
+      if command >= 3
+        pbSetPermadeath(:NUZLOCKE)
+      end
+      break
+    end
+  end
+end
+
+# CHANGED: Method to get current game mode
+def pbGamemode
+  return pbGet(32)
+end
+
+# CHANGED: Method to set multiple events' self switches
+def pbSetSelfSwitches(swtch,value,*events)
+  for event in events
+    pbSetSelfSwitch(event,swtch,value,-1)
+  end
+end
+
+# CHANGED: Method to check if can Z-Transform (outside battle class)
+def pbCanTransform?
+  return $game_switches[Z_TRANSFORM_SWITCH] && $Trainer.party.length <= 5
+end
