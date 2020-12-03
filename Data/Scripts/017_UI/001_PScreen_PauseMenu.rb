@@ -380,11 +380,11 @@ class PokemonPauseMenu
         end
       # CHANGED: Set Controls Screen
       elsif cmdControls>=0 && command==cmdControls
-        # scene=PokemonControlsScene.new
-        # screen=PokemonControls.new(scene)
-        # pbFadeOutIn(99999) {
-        #   screen.pbStartScreen
-        # }
+        scene=PokemonControlsScene.new
+        screen=PokemonControls.new(scene)
+        pbFadeOutIn(99999) {
+          screen.pbStartScreen
+        }
       elsif cmdEndGame>=0 && command==cmdEndGame
         @scene.pbHideMenu
         if pbConfirmMessage(_INTL("Are you sure you want to quit the game?"))
