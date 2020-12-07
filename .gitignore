@@ -1,16 +1,16 @@
 # Audio and Graphics folders
-Audio/
-Graphics/
+# Audio/
+# Graphics/
 
 # Data folder, but not Data/Scripts folder
-Data/*
-!Data/Scripts.rxdata
-!Data/Scripts/
+# Data/*
+# !Data/Scripts.rxdata
+# !Data/Scripts/
 
 # Files in the main project folder
-Game.ini
-Game.rxproj
-RGSS*.dll
+# Game.ini
+# Game.rxproj
+# RGSS*.dll
 
 # Temp files
 
