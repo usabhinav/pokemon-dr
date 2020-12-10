@@ -2,6 +2,9 @@
 Audio/
 Graphics/
 
+# Event Exporter folder
+EventExporter/
+
 # Data folder, but not Data/Scripts folder
 Data/*
 !Data/Scripts.rxdata
