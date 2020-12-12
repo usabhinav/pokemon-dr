@@ -1200,7 +1200,8 @@ class PokemonSummary_Scene
     if !@pokemon.egg?
       commands[cmdGiveItem = commands.length] = _INTL("Give item")
       commands[cmdTakeItem = commands.length] = _INTL("Take item") if @pokemon.hasItem?
-      commands[cmdPokedex = commands.length]  = _INTL("View Pokédex") if $Trainer.pokedex
+      # CHANGED: Changed "Pokédex" to "Journal"
+      commands[cmdPokedex = commands.length]  = _INTL("View Journal") if $Trainer.pokedex
     end
     commands[cmdMark = commands.length]       = _INTL("Mark")
     commands[commands.length]                 = _INTL("Cancel")

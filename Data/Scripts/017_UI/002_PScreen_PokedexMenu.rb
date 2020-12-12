@@ -95,7 +95,8 @@ class PokemonPokedexMenuScreen
     for i in 0...$PokemonGlobal.pokedexViable.length
       index = $PokemonGlobal.pokedexViable[i]
       if dexnames[index]==nil
-        commands[i] = _INTL("Pokédex")
+        # CHANGED: Changed "Pokédex" to "Journal"
+        commands[i] = _INTL("Journal")
       else
         if dexnames[index].is_a?(Array)
           commands[i] = dexnames[index][0]

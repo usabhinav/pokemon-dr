@@ -62,7 +62,8 @@ class PokemonLoadPanel < SpriteWrapper
         # CHANGED: Replaced "Badges" with "Towers"
         textpos.push([_INTL("Towers:"),16*2,56*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
         textpos.push([@trainer.numbadges.to_s,103*2,56*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
-        textpos.push([_INTL("Pokédex:"),16*2,72*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
+        # CHANGED: Changed "Pokédex" to "Journal"
+        textpos.push([_INTL("Journal:"),16*2,72*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
         textpos.push([@trainer.pokedexSeen.to_s,103*2,72*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
         textpos.push([_INTL("Time:"),16*2,88*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
         hour = @totalsec / 60 / 60

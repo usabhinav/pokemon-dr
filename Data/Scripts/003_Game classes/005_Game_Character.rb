@@ -134,13 +134,15 @@ class Game_Character
 
   def lock
     return if @locked
-    @prelock_direction = 0   # Was @direction but disabled
+    # CHANGED: Reenabled @direction so that events turn the way they faced after speaking
+    @prelock_direction = @direction   # Was @direction but disabled
     turn_toward_player
     @locked = true
   end
 
   def minilock
-    @prelock_direction = 0   # Was @direction but disabled
+    # CHANGED: Reenabled @direction so that events turn the way they faced after speaking
+    @prelock_direction = @direction   # Was @direction but disabled
     @locked = true
   end
 
