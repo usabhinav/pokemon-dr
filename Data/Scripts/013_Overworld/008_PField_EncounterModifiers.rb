@@ -137,6 +137,22 @@ Events.onWildPokemonCreate+=proc {|sender,e|
 #  end
 #}
 
+# CHANGED: Add +2 levels to enemy trainer's Pokemon
+Events.onTrainerPartyLoad += proc { |_sender, e|
+  if e[0] # Trainer data should exist to be loaded, but may not exist somehow
+    trainer = e[0][0] # A PokeBattle_Trainer object of the loaded trainer
+    items = e[0][1]   # An array of the trainer's items they can use
+    party = e[0][2]   # An array of the trainer's Pokémon
+    if pbGamemode > 1 # Extreme+ modes
+      for i in party
+        newlevel = [i.level + 2, PBExperience.maxLevel].min
+        i.level = newlevel
+        i.calcStats
+      end
+    end
+  end
+}
+
 # CHANGED: DR Underdome battles
 Events.onTrainerPartyLoad += proc { |_sender, e|
   if e[0] # Trainer data should exist to be loaded, but may not exist somehow

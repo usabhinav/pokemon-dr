@@ -120,7 +120,6 @@ class PokeBattle_Battler
       @stages[PBStats::SPDEF]    = 0
       @stages[PBStats::EVASION]  = 0
       @stages[PBStats::ACCURACY] = 0
-      pbIncreaseStatsByGamemode # CHANGED: Increase stats by gamemode
       @effects[PBEffects::AquaRing]          = false
       @effects[PBEffects::Confusion]         = 0
       @effects[PBEffects::Curse]             = false
@@ -322,17 +321,6 @@ class PokeBattle_Battler
     return if fainted? || !@battle.opposes?(@index)
     eachOpposing do |b|
       @participants.push(b.pokemonIndex) if !@participants.include?(b.pokemonIndex)
-    end
-  end
-  
-  # CHANGED: Increase stats according to gamemode if gamemode is hard+
-  def pbIncreaseStatsByGamemode
-    if opposes? && pbGamemode >= 1
-      pbRaiseStatStageBasic(PBStats::ATTACK, 1)
-      pbRaiseStatStageBasic(PBStats::DEFENSE, 1)
-      pbRaiseStatStageBasic(PBStats::SPATK, 1)
-      pbRaiseStatStageBasic(PBStats::SPDEF, 1)
-      pbRaiseStatStageBasic(PBStats::SPEED, 1)
     end
   end
 end

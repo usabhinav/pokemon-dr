@@ -1284,6 +1284,12 @@ def pbGamemode
   return pbGet(32)
 end
 
+# CHANGED: Method to return if trainer should be battled
+def pbStartTrainerBattle?
+  # Only prompts user if on Normal mode
+  return pbGamemode > 0 || pbConfirmMessage(_INTL("Would you like to battle this trainer?"))
+end
+
 # CHANGED: Method to set multiple events' self switches
 def pbSetSelfSwitches(swtch,value,*events)
   for event in events

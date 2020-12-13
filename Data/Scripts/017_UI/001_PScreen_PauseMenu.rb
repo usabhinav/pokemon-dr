@@ -128,7 +128,7 @@ class PokemonPauseMenu
     # CHANGED: Added Disguises to pause menu
     commands[cmdDisguises = commands.length]= _INTL("Disguises") if $Trainer.trainertype == 1 && $Trainer.obtainedDisguises.length > 0
     # CHANGED: Added Change Gamemode to pause menu
-    commands[cmdGamemode = commands.length] = _INTL("Gamemode") if pbGamemode <= 2
+    commands[cmdGamemode = commands.length] = _INTL("Gamemode") if pbGamemode < 3 # Only below Nuzlocke mode
     # CHANGED: Added Quests to pause menu
     if $Trainer.activeQuests.length > 0 || $Trainer.completedQuests.length > 0
       commands[cmdQuests = commands.length]   = $Trainer.metaID == 1 ? _INTL("Quests") : _INTL("Missions")

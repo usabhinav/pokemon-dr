@@ -372,6 +372,18 @@ class PokeBattle_Battle
         break
       end
     end
+    # CHANGED: Update Nuzlocke maps with this encounter
+    if wildBattle? && @canRecruit && !pbNuzlockeException? && !$PokemonGlobal.nuzlockeMaps[$game_map.map_id]
+      encounterSpecies = nil
+      @caughtPokemon.each do |poke|
+        encounterSpecies = poke.species if poke && !poke.shiny? && encounterSpecies.nil?
+      end
+      # Look for non-shiny foes
+      @party2.each do |poke|
+        encounterSpecies = poke.species if poke && !poke.shiny? && encounterSpecies.nil?
+      end
+      $PokemonGlobal.nuzlockeMaps[$game_map.map_id] = encounterSpecies
+    end
     # END OF CHANGE
     pbEndOfBattle
   end

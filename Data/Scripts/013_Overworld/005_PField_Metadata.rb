@@ -61,6 +61,8 @@ class PokemonGlobalMetadata
   attr_accessor :pokerusTime
   # Save file
   attr_accessor :safesave
+  # CHANGED: Nuzlocke maps
+  attr_accessor :nuzlockeMaps
 
   def initialize
     # Movement
@@ -126,6 +128,8 @@ class PokemonGlobalMetadata
     @pokerusTime          = nil
     # Save file
     @safesave             = false
+    # CHANGED: Nuzlocke maps
+    @nuzlockeMaps         = Hash.new
   end
 
   def bridge

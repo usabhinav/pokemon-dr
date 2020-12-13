@@ -5,9 +5,15 @@ module PokeBattle_BattleCommon
   def pbStorePokemon(pkmn)
     # Nickname the Pokémon (unless it's a Shadow Pokémon)
     if !pkmn.shadowPokemon?
-      if pbDisplayConfirm(_INTL("Would you like to give a nickname to {1}?",pkmn.name))
+      # CHANGED: Force nickname on Nuzlocke mode
+      while pbGamemode >= 3 || pbDisplayConfirm(_INTL("Would you like to give a nickname to {1}?",pkmn.name))
         nickname = @scene.pbNameEntry(_INTL("{1}'s nickname?",pkmn.speciesName),pkmn)
-        pkmn.name = nickname if nickname!=""
+        if pbGamemode >= 3 && (nickname == "" || nickname == pkmn.speciesName)
+          pbDisplay(_INTL("You must give the Pokemon a unique nickname!"))
+        else
+          pkmn.name = nickname
+          break
+        end
       end
     end
     # Store the Pokémon
@@ -95,11 +101,6 @@ module PokeBattle_BattleCommon
       pbDisplayBrief(_INTL("{1} threw an {2}!",pbPlayer.name,itemName))
     else
       pbDisplayBrief(_INTL("{1} threw a {2}!",pbPlayer.name,itemName))
-    end
-    # CHANGED: Can't catch certain event Pokemon
-    if !@canRecruit
-      pbDisplay(_INTL("You can't catch this Pokemon!"))
-      return
     end
     # Animation of opposing trainer blocking Poké Balls (unless it's a Snag Ball
     # at a Shadow Pokémon)

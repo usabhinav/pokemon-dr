@@ -50,6 +50,18 @@ ItemHandlers::CanUseInBattle.addIf(proc { |item| pbIsPokeBall?(item) },   # Pok√
       end
       next false
     end
+    if battle.wildBattle?
+      # CHANGED: Can't catch certain event Pokemon
+      if !battle.canRecruit
+        scene.pbDisplay(_INTL("You can't catch this Pokemon!"))
+        next false
+      end
+      # CHANGED: Prevent catching more than one Pokemon on Nuzlocke mode
+      if !battle.pbNuzlockeCheck
+        scene.pbDisplay(_INTL("You have already caught a Pokemon on this map!"))
+        next false
+      end
+    end
     next true
   }
 )

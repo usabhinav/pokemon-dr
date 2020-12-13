@@ -22,6 +22,7 @@ class PokeBattle_Battle
   end
   
   def pbRestartIfKilled(index, hp, species)
+    # Nuzlocke mode
     if pbOwnedByPlayer?(index) && hp <= 0 && !@canLose && pbGamemode >= 3
       if species == PBSpecies::ZYGARDE
         pbRestartSave
