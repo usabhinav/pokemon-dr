@@ -56,10 +56,15 @@ ItemHandlers::CanUseInBattle.addIf(proc { |item| pbIsPokeBall?(item) },   # Pok√
         scene.pbDisplay(_INTL("You can't catch this Pokemon!"))
         next false
       end
-      # CHANGED: Prevent catching more than one Pokemon on Nuzlocke mode
-      if !battle.pbNuzlockeCheck
-        scene.pbDisplay(_INTL("You have already caught a Pokemon on this map!"))
-        next false
+      # CHANGED: Prevent catching more than one Pokemon or dupes on Nuzlocke mode
+      if !battle.pbNuzlockeException?(battler.pokemon)
+        if $PokemonGlobal.nuzlockeMaps[$game_map.map_id]
+          scene.pbDisplay(_INTL("You have already caught a Pokemon on this map!"))
+          next false
+        elsif $Trainer.owned?(battler.species)
+          scene.pbDisplay(_INTL("You already own this Pokemon!"))
+          next false
+        end
       end
     end
     next true

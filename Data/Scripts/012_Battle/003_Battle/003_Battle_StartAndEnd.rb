@@ -375,12 +375,13 @@ class PokeBattle_Battle
     # CHANGED: Update Nuzlocke maps with this encounter
     if wildBattle? && @canRecruit && !pbNuzlockeException? && !$PokemonGlobal.nuzlockeMaps[$game_map.map_id]
       encounterSpecies = nil
+      # Looks for non-shiny and not owned Pokemon
       @caughtPokemon.each do |poke|
-        encounterSpecies = poke.species if poke && !poke.shiny? && encounterSpecies.nil?
+        encounterSpecies = poke.species if poke && !poke.shiny? && !$Trainer.owned?(poke.species) && encounterSpecies.nil?
       end
-      # Look for non-shiny foes
+      # Look for non-shiny and not owned foes
       @party2.each do |poke|
-        encounterSpecies = poke.species if poke && !poke.shiny? && encounterSpecies.nil?
+        encounterSpecies = poke.species if poke && !poke.shiny? && !$Trainer.owned?(poke.species) && encounterSpecies.nil?
       end
       $PokemonGlobal.nuzlockeMaps[$game_map.map_id] = encounterSpecies
     end

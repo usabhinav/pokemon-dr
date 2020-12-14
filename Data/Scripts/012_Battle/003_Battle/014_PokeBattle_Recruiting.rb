@@ -90,27 +90,30 @@ class PokeBattle_Battle
   
   # Nuzlocke exceptions (not Nuzlocke mode, static encounter, or shiny Pokemon)
   # NOTE: Assumes wild battle
-  def pbNuzlockeException?
+  def pbNuzlockeException?(pokemon = nil)
     return true if pbGamemode < 3 || pbMapInterpreterRunning?
+    return pokemon.shiny? if pokemon # If passed specific Pokemon
     # Look for non-shinies among caught
     @caughtPokemon.each do |poke|
-      return false if !poke.shiny?
+      return false if poke && !poke.shiny?
     end
     # Look for non-shiny foes
     @party2.each do |poke|
-      return false if !poke.shiny?
+      return false if poke && !poke.shiny?
     end
     # All caught Pokemon and foes are shiny, so they are all exceptions
     return true
   end
 
-  # Returns if no Nuzlocke rules prevent player from catching Pokemon
-  # NOTE: Assumes wild battle
-  def pbNuzlockeCheck
-    return pbNuzlockeException? || !$PokemonGlobal.nuzlockeMaps[$game_map.map_id]
-  end
-
   def pbCanRecruit?
-    return $Trainer.party.length < 6 && wildBattle? && pbSideSize(1)==1 && @canRecruit && pbNuzlockeCheck
+    if $Trainer.party.length < 6 && wildBattle? && pbSideSize(1)==1 && @canRecruit
+      if pbNuzlockeException?(@battlers[1].pokemon)
+        return true
+      else
+        return !$PokemonGlobal.nuzlockeMaps[$game_map.map_id] && !$Trainer.owned?(@battlers[1].pokemon.species)
+      end
+    else
+      return false
+    end
   end
 end
