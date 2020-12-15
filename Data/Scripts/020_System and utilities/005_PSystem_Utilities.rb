@@ -1263,12 +1263,34 @@ def pbChooseGamemode
   pbMessage(_INTL("Please select a gamemode."))
   loop do
     modes = [_INTL("Normal"), _INTL("Hard"), _INTL("Extreme"), _INTL("Nuzlocke")]
-    command = pbShowCommandsWithHelp(nil, modes,
-    [_INTL("Recommended for beginners or those who want to enjoy the story."),
-     _INTL("For those with experience in DR and want a bit of a challenge."),
-     _INTL("Tired of Hard mode already? This really shows if you've got the skills."),
-     _INTL("You like the thrill of a challenge; not for the faint of heart.")
-    ])
+    helptext = [_INTL("Recommended for beginners or those who want to enjoy the story."),
+                _INTL("For those with experience in DR and want a bit of a challenge."),
+                _INTL("Tired of Hard mode already? This really shows if you've got the skills."),
+                _INTL("You like the thrill of a challenge; not for the faint of heart.")
+    ]
+    rulestext = [_INTL("Rules:\nMost trainer battles can be refused."),
+                 _INTL("Rules:\nTrainer battles cannot be refused."),
+                 _INTL("Rules:\nHard mode rules, plus...\nAll enemy Pokemon gain +2 levels."),
+                 _INTL("Rules:\nExtreme mode rules, plus...\nPokemon die when they faint. Only one Pokemon may be caught per map. All Pokemon must be nicknamed.")
+    ]
+    msgwindow = pbCreateMessageWindow
+    ruleswindow = pbCreateMessageWindow
+    ruleswindow.x = 150
+    ruleswindow.y = 0
+    ruleswindow.width = SCREEN_WIDTH - ruleswindow.x
+    ruleswindow.height = msgwindow.y
+    ruleswindow.letterbyletter=false
+    oldcmd = -1
+    command = pbShowCommandsWithHelp(msgwindow, modes, helptext) {
+      newcmd = helptext.index(msgwindow.text)
+      if newcmd != oldcmd # Update rules window if cursor has moved
+        ruleswindow.text = rulestext[newcmd]
+        ruleswindow.update
+      end
+      oldcmd = newcmd
+    }
+    pbDisposeMessageWindow(msgwindow)
+    pbDisposeMessageWindow(ruleswindow)
     if pbConfirmMessage(_INTL("You have chosen #{modes[command]} mode. Is this okay?"))
       pbSet(32, command)
       if command >= 3

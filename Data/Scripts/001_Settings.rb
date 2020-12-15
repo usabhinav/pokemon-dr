@@ -367,3 +367,10 @@ LANGUAGES = [
 #  ["English", "english.dat"],
 #  ["Deutsch", "deutsch.dat"]
 ]
+
+#===============================================================================
+# * CHANGED: Nuzlocke connected maps
+#===============================================================================
+NUZLOCKE_CONNECTED_MAPS = [
+  [34, 38] # Pepper Ridge Farm
+]

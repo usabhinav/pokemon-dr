@@ -383,6 +383,13 @@ class PokeBattle_Battle
       @party2.each do |poke|
         encounterSpecies = poke.species if poke && !poke.shiny? && !$Trainer.owned?(poke.species) && encounterSpecies.nil?
       end
+      for list in NUZLOCKE_CONNECTED_MAPS
+        if list.include?($game_map.map_id)
+          for id in list
+            $PokemonGlobal.nuzlockeMaps[id] = encounterSpecies
+          end
+        end
+      end
       $PokemonGlobal.nuzlockeMaps[$game_map.map_id] = encounterSpecies
     end
     # END OF CHANGE

@@ -135,8 +135,7 @@ class PokemonPauseMenu
     end
     commands[cmdTrainer = commands.length]  = $Trainer.name
     # CHANGED: Multiple Protagonists
-    if $PokemonGlobal.commandCharacterSwitchOn && !pbInSafari? &&
-          !pbInBugContest? && !pbBattleChallenge.pbInProgress?
+    if ($DEBUG || $PokemonGlobal.commandCharacterSwitchOn) && !pbInSafari? && !pbInBugContest? && !pbBattleChallenge.pbInProgress?
       commands[cmdSwitch = commands.length] = _INTL("Switch")
     end
     commands[cmdControls=commands.length]=_INTL("Controls") # CHANGED: Set Controls Screen
