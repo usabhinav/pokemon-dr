@@ -373,7 +373,7 @@ class PokeBattle_Battle
       end
     end
     # CHANGED: Update Nuzlocke maps with this encounter
-    if wildBattle? && @canRecruit && !pbNuzlockeException? && !$PokemonGlobal.nuzlockeMaps[$game_map.map_id]
+    if wildBattle? && @canRecruit && !pbNuzlockeException? && !$Trainer.nuzlockeMaps[$game_map.map_id]
       encounterSpecies = nil
       # Looks for non-shiny and not owned Pokemon
       @caughtPokemon.each do |poke|
@@ -386,11 +386,11 @@ class PokeBattle_Battle
       for list in NUZLOCKE_CONNECTED_MAPS
         if list.include?($game_map.map_id)
           for id in list
-            $PokemonGlobal.nuzlockeMaps[id] = encounterSpecies
+            $Trainer.nuzlockeMaps[id] = encounterSpecies
           end
         end
       end
-      $PokemonGlobal.nuzlockeMaps[$game_map.map_id] = encounterSpecies
+      $Trainer.nuzlockeMaps[$game_map.map_id] = encounterSpecies
     end
     # END OF CHANGE
     pbEndOfBattle

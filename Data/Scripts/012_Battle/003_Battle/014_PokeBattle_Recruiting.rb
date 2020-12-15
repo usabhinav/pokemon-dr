@@ -110,7 +110,7 @@ class PokeBattle_Battle
       if pbNuzlockeException?(@battlers[1].pokemon)
         return true
       else
-        return !$PokemonGlobal.nuzlockeMaps[$game_map.map_id] && !$Trainer.owned?(@battlers[1].pokemon.species)
+        return !$Trainer.nuzlockeMaps[$game_map.map_id] && !$Trainer.owned?(@battlers[1].pokemon.species)
       end
     else
       return false

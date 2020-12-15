@@ -15,12 +15,13 @@ class PokeBattle_Trainer
   attr_accessor :pokedex    # Whether the Pokédex was obtained
   attr_accessor :pokegear   # Whether the Pokégear was obtained
   attr_writer   :language
-  attr_accessor(:lucario)           # CHANGED: Lucario Storage
-  attr_accessor(:zygarde)           # CHANGED: Zygarde Pokemon
-  attr_accessor(:obtainedDisguises) # CHANGED: List of disguises obtained by player
-  attr_accessor(:equippedDisguise)  # CHANGED: Currently equipped disguise
-  attr_accessor(:activeQuests)      # CHANGED: Currently active quests
-  attr_accessor(:completedQuests)   # CHANGED: Completed quests
+  attr_accessor :lucario            # CHANGED: Lucario Storage
+  attr_accessor :zygarde            # CHANGED: Zygarde Pokemon
+  attr_accessor :obtainedDisguises  # CHANGED: List of disguises obtained by player
+  attr_accessor :equippedDisguise   # CHANGED: Currently equipped disguise
+  attr_accessor :activeQuests       # CHANGED: Currently active quests
+  attr_accessor :completedQuests    # CHANGED: Completed quests
+  attr_accessor :nuzlockeMaps       # CHANGED: Nuzlocke maps
 
   def trainerTypeName   # Name of this trainer type (localized)
     return PBTrainers.getName(@trainertype) rescue _INTL("PkMn Trainer")
@@ -287,5 +288,6 @@ class PokeBattle_Trainer
     @equippedDisguise  = nil # CHANGED: Initialized equippedDisguise
     @activeQuests      = []  # CHANGED: Initialized activeQuests
     @completedQuests   = []  # CHANGED: Initialized completedQuests
+    @nuzlockeMaps      = Hash.new # CHANGED: Initialized nuzlockeMaps
   end
 end

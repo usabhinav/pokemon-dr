@@ -491,7 +491,6 @@ module PBCharacterData
     Walking_Time_Variable      = 52
     Walking_Item_Variable      = 53
   end
-  NuzlockeMaps          = 54 # CHANGED: Nuzlocke maps
 end
 
 class PokemonGlobalMetadata
@@ -643,7 +642,6 @@ def pbSwitchCharacter(id, name = nil, outfit = 0)
     $game_variables[Walking_Item_Variable] = meta[PBCharacterData::Walking_Item_Variable]
     $PokemonTemp.dependentEvents.refresh_sprite
   end
-  $PokemonGlobal.nuzlockeMaps          = meta[PBCharacterData::NuzlockeMaps] # CHANGED: Nuzlocke Maps
   $PokemonGlobal.playerID = $Trainer.metaID
   $game_player.charsetData = nil
   pbUpdateVehicle
@@ -738,7 +736,6 @@ def pbCharacterInfoArray
     info[PBCharacterData::Walking_Time_Variable] = $game_variables[Walking_Time_Variable]
     info[PBCharacterData::Walking_Item_Variable] = $game_variables[Walking_Item_Variable]
   end
-  info[PBCharacterData::NuzlockeMaps]          = $PokemonGlobal.nuzlockeMaps # CHANGED: Nuzlocke Maps
   return info
 end
 
@@ -805,7 +802,6 @@ def pbDefaultCharacterInfoArray
     info[PBCharacterData::Walking_Time_Variable] = 0
     info[PBCharacterData::Walking_Item_Variable] = 0
   end
-  info[PBCharacterData::NuzlockeMaps]          = Hash.new # CHANGED: Nuzlocke Maps
   return info
 end
 
