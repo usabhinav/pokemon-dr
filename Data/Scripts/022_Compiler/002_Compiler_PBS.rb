@@ -682,11 +682,12 @@ end
 # CHANGED: Compile quests
 #===============================================================================
 def pbCompileQuests
-  validranks    = ["D", "C", "B", "A", "S", "Z"]
-  questindex    = -1
-  quests        = []
-  stageindex    = -2
-  code          = "module PBQuests\r\n"
+  validranks     = ["D", "C", "B", "A", "S", "Z"]
+  questindex     = -1
+  quests         = []
+  stageindex     = -2
+  objectiveindex = -2
+  code           = "module PBQuests\r\n"
   pbCompilerEachCommentedLine("PBS/quests.txt") { |line,lineno|
     if line[/^\s*\[\s*(.+)\s*\]\s*$/]
       if stageindex==-1
@@ -707,9 +708,9 @@ def pbCompileQuests
       settingname = $~[1]
       schema = nil
       case settingname
-      when "Name", "InternalName", "Summary", "Completed", "Description", "Location"
+      when "Name", "InternalName", "Summary", "Completed", "Stage", "Objective", "Location"
         schema = [0, "s"]
-      when "Stage", "Count"
+      when "Count"
         schema = [0, "v"]
       when "Rank"
         schema = [0, "S"]
@@ -723,8 +724,8 @@ def pbCompileQuests
           raise _INTL("Invalid rank: {1} (must be D, C, B, A, S, or Z)\r\n{2}",record,FileLineData.linereport)
         end
       when "Stage"
-        if stageindex + 2 != record
-          raise _INTL("Skipped stage number from {1} to {2}\r\n{3}",stageindex + 1,record,FileLineData.linereport)
+        if objectiveindex == -1
+          raise _INTL("Section {1}: Started a new stage when the previous stage has no objectives!\r\n{2}",questindex + 1,FileLineData.linereport)
         end
       end
       # Record XXX=YYY setting
@@ -740,15 +741,16 @@ def pbCompileQuests
       when "Rank"
         quests[questindex][4] = record
       when "Stage"
-        stageindex = record - 1
-        quests[questindex][3][stageindex] = []
-        quests[questindex][3][stageindex][2] = 0
-      when "Description"
-        quests[questindex][3][stageindex][0] = record
+        stageindex += 1
+        quests[questindex][3][stageindex] = [record, nil, []] # Description, Location, Objectives
+        objectiveindex = -1
+      when "Objective"
+        objectiveindex += 1
+        quests[questindex][3][stageindex][2][objectiveindex] = [record, 1] # Objective Description, Count
       when "Location"
         quests[questindex][3][stageindex][1] = record
       when "Count"
-        quests[questindex][3][stageindex][2] = record
+        quests[questindex][3][stageindex][2][objectiveindex][1] = record
       else
         raise _INTL("Invalid setting {1}\r\n{2}",settingname,FileLineData.linereport)
       end

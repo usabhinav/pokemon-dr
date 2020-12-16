@@ -350,10 +350,13 @@ class PokemonPauseMenu
               if co < quests.length - 1
                 q = $Trainer.activeQuests[co]
                 stagemsg = PBQuests.getStageDescription(q.id, q.currentStage)
-                if PBQuests.getStageCount(q.id, q.currentStage) > 0
-                  stagemsg += " (#{q.currentStageCount} / #{PBQuests.getStageCount(q.id, q.currentStage)})"
-                end
                 pbMessage(_INTL(stagemsg))
+                for i in 0...q.currentObjectives.length
+                  objectivemsg = PBQuests.getStageObjectiveDescription(q.id, q.currentStage, i + 1)
+                  currentcount = q.currentObjectives[i]
+                  objectivecount = PBQuests.getStageObjectiveCount(q.id, q.currentStage, i + 1)
+                  pbMessage(_INTL(objectivemsg + " (#{currentcount} / #{objectivecount})"))
+                end
               else
                 break
               end
