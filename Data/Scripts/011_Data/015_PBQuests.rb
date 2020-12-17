@@ -65,6 +65,11 @@ module PBQuests
     return data[id - 1][4]
   end
 
+  def PBQuests.getMain(id)
+    data = pbLoadQuestsData
+    return data[id - 1][5]
+  end
+
   def PBQuests.getStageDescription(id, stage)
     stages = PBQuests.getStages(id)
     return stages[stage - 1][0]
@@ -93,6 +98,11 @@ module PBQuests
   def PBQuests.getStageObjectiveCount(id, stage, objective)
     objectives = PBQuests.getStageObjectives(id, stage)
     return objectives[objective - 1][1]
+  end
+
+  def PBQuests.getStageObjectiveOptional(id, stage, objective)
+    objectives = PBQuests.getStageObjectives(id, stage)
+    return objectives[objective - 1][2]
   end
 end
 
@@ -165,7 +175,7 @@ def pbQuestStageComplete?(id, stage)
   quest = pbGetActiveQuest(id)
   return false if !quest
   for i in 0...quest.currentObjectives.length
-    return false if quest.currentObjectives[i] < PBQuests.getStageObjectiveCount(quest.id, stage, i + 1)
+    return false if !PBQuests.getStageObjectiveOptional(quest.id, stage, i + 1) && quest.currentObjectives[i] < PBQuests.getStageObjectiveCount(quest.id, stage, i + 1)
   end
   return true
 end

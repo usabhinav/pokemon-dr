@@ -698,7 +698,7 @@ def pbCompileQuests
         raise _INTL("Skipped quest number from {1} to {2}\r\n{3}",questindex + 1,section,FileLineData.linereport)
       end
       questindex = section - 1
-      quests[questindex] = [nil,nil,nil,[],nil] # Name, Summary, Completed, Stages, Rank (for missions)
+      quests[questindex] = [nil,nil,nil,[],nil,false] # Name, Summary, Completed, Stages, Rank (for missions), Main flag
       stageindex = -1
     elsif line[/^\s*(\w+)\s*=\s*(.*)$/]
       # XXX=YYY lines
@@ -708,7 +708,7 @@ def pbCompileQuests
       settingname = $~[1]
       schema = nil
       case settingname
-      when "Name", "InternalName", "Summary", "Completed", "Stage", "Objective", "Location"
+      when "Name", "InternalName", "Summary", "Completed", "Main", "Stage", "Objective", "Location", "Optional"
         schema = [0, "s"]
       when "Count"
         schema = [0, "v"]
@@ -721,7 +721,11 @@ def pbCompileQuests
       case settingname
       when "Rank"
         if !validranks.include?(record)
-          raise _INTL("Invalid rank: {1} (must be D, C, B, A, S, or Z)\r\n{2}",record,FileLineData.linereport)
+          raise _INTL("Section {1}: Invalid rank: {2} (must be D, C, B, A, S, or Z)\r\n{3}",questindex + 1,record,FileLineData.linereport)
+        end
+      when "Main", "Optional"
+        if record != "true" && record != "false"
+          raise _INTL("Section {1}: Invalid setting for {2} (must be true or false)\r\n{3}",questindex + 1,settingname,FileLineData.linereport)
         end
       when "Stage"
         if objectiveindex == -1
@@ -740,17 +744,21 @@ def pbCompileQuests
         quests[questindex][2] = record
       when "Rank"
         quests[questindex][4] = record
+      when "Main"
+        quests[questindex][4] = true if record == "true"
       when "Stage"
         stageindex += 1
         quests[questindex][3][stageindex] = [record, nil, []] # Description, Location, Objectives
         objectiveindex = -1
       when "Objective"
         objectiveindex += 1
-        quests[questindex][3][stageindex][2][objectiveindex] = [record, 1] # Objective Description, Count
+        quests[questindex][3][stageindex][2][objectiveindex] = [record, 1, false] # Objective Description, Count, Optional flag
       when "Location"
         quests[questindex][3][stageindex][1] = record
       when "Count"
         quests[questindex][3][stageindex][2][objectiveindex][1] = record
+      when "Optional"
+        quests[questindex][3][stageindex][2][objectiveindex][2] = true if record == "true"
       else
         raise _INTL("Invalid setting {1}\r\n{2}",settingname,FileLineData.linereport)
       end

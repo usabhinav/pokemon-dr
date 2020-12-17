@@ -40,6 +40,7 @@ InternalName = THEBRIEFING
 Summary = Bruce is holding a briefing for the Dark Rising cadets.
 Completed = You'll have to hear the rest of it after you take care of those Nezhas.
 Rank = D
+Main = true
 Stage = See what Bruce has to say.
     Location = Dark Rising HQ
     Objective = Attend the briefing.
@@ -48,8 +49,9 @@ Stage = See what Bruce has to say.
 Name = Nezha Attack!
 InternalName = NEZHAATTACK
 Summary = The Nezhas are attacking the base! Defend it at all costs!
-Completed = Good job. There were losses, but the base should be safe for the time being.
+Completed = "Good job. There were losses, but the base should be safe for the time being."
 Rank = D
+Main = true
 Stage = Help your friends fight off the Nezha!
     Location = Dark Rising HQ
     Objective = Help Joel.
@@ -61,3 +63,86 @@ Stage = Help Leah!
 Stage = The Nezha commander has shown himself... take him down.
     Location = Dark Rising HQ
     Objective = Defeat the Nezha commander.
+#-------------------------------
+[6]
+Name = Radio Tower Supplies
+InternalName = RADIOTOWERSUPPLIES
+Summary = The radio tower suffered heavy damages in the last attack. Find supplies to restore communication with other villages.
+Completed = "You traversed the deadly swamp, defeated King Snorlax, and saved Meridian Town. All in a day's work."
+Rank = B
+Main = true
+Stage = "Before you reach the next town, you'll have to pass through a dreadful swamp..."
+    Location = Lazarus Swamp
+    Objective = Reach Lazarus Swamp
+Stage = There might be useful items scattered about. See what you can find.
+    Location = Lazarus Swamp
+    Objective = Explore the swamp
+Stage = Fiona's gone missing! See if you and Joel can track her down.
+    Location = Lazarus Swamp
+    Objective = Find Fiona
+Stage = "After the incident with those Tangrowths, it's best not to stay for much longer. Make your way to Meridian Town."
+    Location = Meridian Town
+    Objective = Reach Meridian Town
+Stage = "You've made it! Rest up for a bit, then start searching for supplies."
+    Location = Meridian Town
+    Objective = Look for supplies
+Stage = Something weird is going on here. Who is this King Snorlax people keep talking about? Regroup with your team and see what they've found out.
+    Location = Meridian Town
+    Objective = Regroup with the team
+Stage = "Bust into the King's Club, save Cindy and everyone else who's been enslaved, and get the supplies for the radio tower. Simple."
+    Location = King's Club
+    Objective = Reach King's Club
+Stage = Leah's been kidnapped! The King must've taken her back to his throne room - find it and take him down once and for all.
+    Location = King's Club
+    Objective = Defeat the King
+#-------------------------------
+[7]
+Name = Jailbreak
+InternalName = JAILBREAK
+Summary = "Who is that mysterious Lucario? Anyways, it doesn't matter - get out of here as fast as you can!"
+Completed = Finally out of that godforsaken place...
+Main = true
+Stage = "Reach the surface and escape with Lucario. You might find some poor souls along the way, too..."
+    Location = Arkham Prison
+    Objective = Escape prison
+    Objective = Free prisoners
+        Count = 9
+        Optional = true
+#-------------------------------
+[8]
+Name = Ship Assault
+InternalName = SHIPASSAULT
+Summary = Your ship is being attacked! Defeat the wild Pokemon before your ship sinks!
+Completed = Lucario managed to get you to safety.
+Main = true
+Stage = Defeat the Skrelp and Dhelmise scattered around the ship!
+    Location = Ship
+    Objective = Defeat Skrelp and Dhelmise
+        Count = 4
+Stage = Lucario is in trouble! Help him take down the last of the attackers!
+    Location = Ship
+    Objective = Help Lucario
+#-------------------------------
+[9]
+Name = Shipwrecked
+InternalName = SHIPWRECKED
+Summary = "Lucario managed to land at a nearby port, but your ship is busted. Find supplies to fix it."
+Completed = I don't know?
+Main = true
+Stage = There should be someone in town who can help you out.
+    Location = Green Bay Town
+    Objective = Find ship supplies
+Stage = "Looks like there's a thief on the loose, who just so happens to have the supplies you need... it's a bit dirty, but you should be able to get those supplies if you hand him over to the Nezhas."
+    Location = Observatory Route
+    Objective = Find thief
+#-------------------------------
+[10]
+Name = Radio Tower Delivery
+InternalName = RADIOTOWERDELIVERY
+Summary = Deliver the supplies you retrieved from Meridian Town to the radio tower.
+Completed = "Thanks to those supplies, the radio tower's communications equipment is up and running again."
+Rank = D
+Main = true
+Stage = Deliver the supplies to the radio tower.
+    Location = Dark Rising HQ
+    Objective = Deliver supplies
