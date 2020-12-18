@@ -645,6 +645,7 @@ def pbSwitchCharacter(id, name = nil, outfit = 0)
   $PokemonGlobal.playerID = $Trainer.metaID
   $game_player.charsetData = nil
   pbUpdateVehicle
+  $PokemonTemp.hud.update # CHANGED: Update HUD on switching
 end
 
 # Saves data of Player A (id 0) at start of game

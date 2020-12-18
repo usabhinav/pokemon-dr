@@ -32,6 +32,9 @@ class HUD
   end
 
   def update
+    clearDisguiseSteps
+    clearKarmaBar
+    clearWaypoint
     if $PokemonGlobal.playerID == 0 # Zyro's HUD
       updateWaypoint
     elsif $PokemonGlobal.playerID == 1 # Zyree's HUD
@@ -94,7 +97,7 @@ class HUD
     clearWaypoint
     if $Trainer.activeQuests.length > 0
       @sprites["waypoint"].bitmap = Bitmap.new(SCREEN_WIDTH, SCREEN_HEIGHT)
-      pbSetSystemFont(@sprites["disguisebar"].bitmap)
+      pbSetSystemFont(@sprites["waypoint"].bitmap)
       q = $Trainer.activeQuests[$Trainer.activeQuests.length - 1]
       objectivetexts = []
       maxwidth = 0
