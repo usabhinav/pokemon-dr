@@ -372,31 +372,15 @@ def pbOnStepTaken(eventTriggered)
   $PokemonTemp.encounterTriggered = false   # This info isn't needed
   # CHANGED: Reduce step count of disguise
   if $Trainer.equippedDisguise && $Trainer.equippedDisguise.stepcount > 0 &&
-     !pbMapInterpreterRunning? # && DISGUISE_EXCLUSIVES.include?($game_map.map_id)
-    $Trainer.equippedDisguise.stepcount -= 1
-    disguise = $Trainer.equippedDisguise
-    barbitmap = Bitmap.new("Graphics/Pictures/Disguises/bar.png")
-    framebitmap = Bitmap.new("Graphics/Pictures/Disguises/frame.png")
-    bar_start_y = 0
-    if disguise.stepcount < disguise.maxcount / 4
-      bar_start_y = barbitmap.height.to_f * 2 / 3
-    elsif disguise.stepcount < disguise.maxcount / 2
-      bar_start_y = barbitmap.height.to_f / 3
-    end
-    barwidth = barbitmap.width.to_f * disguise.stepcount / disguise.maxcount
-    barsrcrect = Rect.new(0, bar_start_y, barwidth, barbitmap.height / 3.0)
-    Game_Map.bar.bitmap.clear
-    Game_Map.bar.bitmap.dispose
-    Game_Map.bar.bitmap = framebitmap
-    Game_Map.bar.bitmap.blt(4, 4, barbitmap, barsrcrect)
-    pbSetSystemFont(Game_Map.bar.bitmap)
-    Game_Map.bar.bitmap.draw_text(0, 0, framebitmap.width, framebitmap.height, "Disguise Limit", 1)
-    if $Trainer.equippedDisguise.isBroken?
-      $Trainer.equippedDisguise = nil
-      $Trainer.outfit = 0
-      pbMessage(_INTL("Your disguise broke!"))
-    end
-  end
+    !pbMapInterpreterRunning? # && DISGUISE_EXCLUSIVES.include?($game_map.map_id)
+   $Trainer.equippedDisguise.stepcount -= 1
+   if $Trainer.equippedDisguise.isBroken?
+     $Trainer.equippedDisguise = nil
+     $Trainer.outfit = 0
+     pbMessage(_INTL("Your disguise broke!"))
+   end
+ end
+  $PokemonTemp.hud.updateDisguiseSteps
 end
 
 def pbBattleOnStepTaken(repel=false)

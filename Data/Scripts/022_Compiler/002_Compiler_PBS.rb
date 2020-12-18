@@ -690,6 +690,7 @@ def pbCompileQuests
   code           = "module PBQuests\r\n"
   pbCompilerEachCommentedLine("PBS/quests.txt") { |line,lineno|
     if line[/^\s*\[\s*(.+)\s*\]\s*$/]
+      # [X] lines
       if stageindex==-1
         raise _INTL("Started new quest while previous quest has no stages\r\n{1}",FileLineData.linereport)
       end
@@ -708,9 +709,9 @@ def pbCompileQuests
       settingname = $~[1]
       schema = nil
       case settingname
-      when "Name", "InternalName", "Summary", "Completed", "Main", "Stage", "Objective", "Location", "Optional"
+      when "Name", "InternalName", "Summary", "Completed", "Main", "Description", "Objective", "Location", "Optional"
         schema = [0, "s"]
-      when "Count"
+      when "Count", "Stage"
         schema = [0, "v"]
       when "Rank"
         schema = [0, "S"]
@@ -729,7 +730,10 @@ def pbCompileQuests
         end
       when "Stage"
         if objectiveindex == -1
-          raise _INTL("Section {1}: Started a new stage when the previous stage has no objectives!\r\n{2}",questindex + 1,FileLineData.linereport)
+          raise _INTL("Section {1}: Started a new stage when the previous stage has no objectives\r\n{2}",questindex + 1,FileLineData.linereport)
+        end
+        if stageindex + 2 != record
+          raise _INTL("Section {1}: Skipped stage number from {2} to {3}\r\n{4}",questindex + 1,stageindex + 1,record,FileLineData.linereport)
         end
       end
       # Record XXX=YYY setting
@@ -747,9 +751,11 @@ def pbCompileQuests
       when "Main"
         quests[questindex][4] = true if record == "true"
       when "Stage"
-        stageindex += 1
-        quests[questindex][3][stageindex] = [record, nil, []] # Description, Location, Objectives
+        stageindex = record - 1
+        quests[questindex][3][stageindex] = [nil, nil, []] # Description, Location, Objectives
         objectiveindex = -1
+      when "Description"
+        quests[questindex][3][stageindex][0] = record
       when "Objective"
         objectiveindex += 1
         quests[questindex][3][stageindex][2][objectiveindex] = [record, 1, false] # Objective Description, Count, Optional flag

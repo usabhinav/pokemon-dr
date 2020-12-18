@@ -126,6 +126,7 @@ def pbActivateQuest(id)
   quest = Quest.new(id)
   $Trainer.activeQuests.push(quest)
   pbMessage(_INTL("Received quest {1}!", quest.name))
+  $PokemonTemp.hud.updateWaypoint
 end
 
 def pbActivateQuestSilent(id)
@@ -133,6 +134,7 @@ def pbActivateQuestSilent(id)
   id = getConst(PBQuests, id) if id.is_a?(Symbol)
   quest = Quest.new(id)
   $Trainer.activeQuests.push(quest)
+  $PokemonTemp.hud.updateWaypoint
 end
 
 def pbAdvanceQuest(id, stage, objective = 1)
@@ -151,6 +153,7 @@ def pbAdvanceQuest(id, stage, objective = 1)
         quest.currentObjectives = Array.new(PBQuests.getNumStageObjectives(quest.id, quest.currentStage), 0)
       end
     end
+    $PokemonTemp.hud.updateWaypoint
   end
 end
 
@@ -161,6 +164,7 @@ def pbCompleteQuest(id)
     quest.completed = true
     $Trainer.completedQuests.push($Trainer.activeQuests.delete(quest))
     pbMessage(_INTL("Completed quest {1}!", quest.name))
+    $PokemonTemp.hud.clearWaypoint
   end
 end
 

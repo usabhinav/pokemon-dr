@@ -21,6 +21,9 @@ class Scene_Map
     end
     $MapFactory.setSceneStarted(self)
     updateSpritesets
+    # CHANGED: Create HUD
+    $PokemonTemp.hud = HUD.new if !$PokemonTemp.hud
+    $PokemonTemp.hud.update
   end
 
   def createSingleSpriteset(map)

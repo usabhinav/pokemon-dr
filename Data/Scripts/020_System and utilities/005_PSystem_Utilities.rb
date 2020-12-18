@@ -1251,6 +1251,19 @@ def pbChangeKarmaBy(diff)
   elsif pbGet(33) < -MAXIMUM_KARMA
     pbSet(33, -MAXIMUM_KARMA)
   end
+  $PokemonTemp.hud.updateKarmaBar
+end
+
+# CHANGED: Show karma bar and update HUD
+def pbShowKarmaBar
+  $game_switches[SHOW_KARMA_SWITCH] = true
+  $PokemonTemp.updateKarmaBar
+end
+
+# CHANGED: Hide karma bar and update HUD
+def pbHideKarmaBar
+  $game_switches[SHOW_KARMA_SWITCH] = false
+  $PokemonTemp.updateKarmaBar
 end
 
 # CHANGED: Method to set player's expression

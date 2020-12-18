@@ -35,14 +35,6 @@ class Game_Map
   Y_SUBPIXELS = ($RPGVX) ? 8 : 4
   REAL_RES_X  = TILE_WIDTH * X_SUBPIXELS
   REAL_RES_Y  = TILE_HEIGHT * Y_SUBPIXELS
-  
-  # CHANGED: Disguise bar
-  @@bar = nil
-  
-  # CHANGED: Method to access disguise bar
-  def Game_Map.bar
-    return @@bar
-  end
 
   def initialize
     @map_id = 0
@@ -443,53 +435,6 @@ class Game_Map
       d = @fog_opacity_duration
       @fog_opacity = (@fog_opacity * (d - 1) + @fog_opacity_target) / d
       @fog_opacity_duration -= 1
-    end
-    # CHANGED: Update karma bar every frame
-    if $game_switches[SHOW_KARMA_SWITCH] && $Trainer.metaID == 1
-      karmabar = "karmabar.png"
-      karmaindicator = "karmaindicator.png"
-      if $game_screen.pictures[49].name == ""
-        $game_screen.pictures[49].show(karmabar, 0, 380, 10, 100, 100, 255, 0)
-        $game_screen.pictures[50].show(karmaindicator, 0, 0, 0, 100, 100, 255, 0)
-      end
-      if $game_screen.pictures[50].name == karmaindicator
-        bounds = [8 + $game_screen.pictures[49].x, 116 + $game_screen.pictures[49].x]
-        karma = ((pbGet(33) + MAXIMUM_KARMA) * 54.0) / MAXIMUM_KARMA
-        new_x = bounds[0] + karma - 15
-        $game_screen.pictures[50].move(1, 0, new_x, 0, 100, 100, 255, 0)
-      end
-    else
-      $game_screen.pictures[49].erase
-      $game_screen.pictures[50].erase
-    end
-    # CHANGED: Update disguise bar every frame
-    if $Trainer && $Trainer.equippedDisguise
-      if !@@bar
-        disguise = $Trainer.equippedDisguise
-        framebitmap = Bitmap.new("Graphics/Pictures/Disguises/frame.png")
-        barbitmap = Bitmap.new("Graphics/Pictures/Disguises/bar.png")
-        bar_start_y = 0
-        if disguise.stepcount < disguise.maxcount / 4
-          bar_start_y = barbitmap.height.to_f * 2 / 3
-        elsif disguise.stepcount < disguise.maxcount / 2
-          bar_start_y = barbitmap.height.to_f / 3
-        end
-        barwidth = barbitmap.width.to_f * disguise.stepcount / disguise.maxcount
-        barsrcrect = Rect.new(0, bar_start_y, barwidth, barbitmap.height / 3.0)
-        @@bar = Sprite.new(Spriteset_Global.viewport2)
-        @@bar.bitmap = framebitmap
-        @@bar.x = 377 - 7
-        @@bar.y = 30
-        @@bar.z = 999
-        @@bar.zoom_x = 0.75
-        @@bar.zoom_y = 0.75
-        pbSetSystemFont(@@bar.bitmap)
-        @@bar.bitmap.blt(4, 4, barbitmap, barsrcrect)
-        @@bar.bitmap.draw_text(0, 0, framebitmap.width, framebitmap.height, "Disguise Limit", 1)
-      end
-    else
-      @@bar.dispose if @@bar
-      @@bar = nil
     end
   end
 end

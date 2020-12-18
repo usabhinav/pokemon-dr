@@ -11,12 +11,6 @@ class PokemonDisguise_Scene
     # Background
     @sprites["background"] = Sprite.new(@viewport)
     @sprites["background"].bitmap = Bitmap.new("Graphics/Pictures/Disguises/bg.png")
-    # Highlight (starts at top)
-    # @sprites["highlight"] = Sprite.new(@viewport)
-    # @sprites["highlight"].bitmap = Bitmap.new("Graphics/Pictures/Disguises/cursor_selected.png")
-    # @sprites["highlight"].x = 40
-    # @sprites["highlight"].y = 41
-    # @sprites["highlight"].z = 1
     # Arrow selector
     @sprites["rightarrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport)
     @sprites["rightarrow"].x = 5
@@ -177,7 +171,6 @@ class PokemonDisguise_Scene
   end
   
   def pbDrawList
-    # @sprites["highlight"].y = 41 + 32*@highlightpos
     @sprites["rightarrow"].y = 41 + 32*@highlightpos
     @sprites["list_overlay"].bitmap.clear
     @sprites["highlight_overlay"].bitmap.clear

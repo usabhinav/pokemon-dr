@@ -103,6 +103,7 @@ def pbEquipDisguise(disguise_id, showmessage=true)
         $Trainer.equippedDisguise = i
         $Trainer.outfit = i.outfit_id
         pbMessage(_INTL("You equipped the \\c[1]{1}\\c[0].\\wtnp[30]",i.name)) if showmessage
+        $PokemonTemp.hud.updateDisguiseSteps
         return
       end
     end
@@ -114,6 +115,7 @@ def pbUnequipDisguise(showmessage=true)
   pbMessage(_INTL("You unequipped the \\c[1]{1}\\c[0].\\wtnp[30]",$Trainer.equippedDisguise.name)) if showmessage
   $Trainer.equippedDisguise = nil
   $Trainer.outfit = 0
+  $PokemonTemp.hud.updateDisguiseSteps
 end
 
 def pbGetBrokenDisguises
