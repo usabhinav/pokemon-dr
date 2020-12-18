@@ -55,7 +55,7 @@ class PokemonDisguise_Scene
     @sprites["cursor_down"].visible = false
   end
   
-  def pbShowDisguises
+  def pbShowDisguises(mode)
     pbFadeInAndShow(@sprites)
     loop do
       Graphics.update
@@ -95,13 +95,23 @@ class PokemonDisguise_Scene
         pbPlayCursorSE
       elsif Input.trigger?(Input::C)
         sel = @disguises[@disguisepos + @highlightpos]
-        if $Trainer.equippedDisguise == sel
-          pbUnequipDisguise
+        if mode == 1 # Select disguise for repair
+          if sel.stepcount >= sel.maxcount
+            pbMessage(_INTL("The {1} is not broken!", sel.name))
+          elsif pbConfirmMessage(_INTL("Repair the {1}?", sel.name))
+            pbSet(5, sel)
+            break
+          end
         else
-          pbEquipDisguise(sel.id)
+          if $Trainer.equippedDisguise == sel
+            pbUnequipDisguise
+          else
+            pbEquipDisguise(sel.id)
+          end
+          pbDrawOverlay(@disguisepos + @highlightpos)
         end
-        pbDrawOverlay(@disguisepos + @highlightpos)
       elsif Input.trigger?(Input::B)
+        pbSet(5, 0) if mode == 1
         break
       end
     end
@@ -200,27 +210,16 @@ class PokemonDisguise_Scene
 end
 
 class PokemonDisguiseScreen
-  def initialize(scene)
+  def initialize(scene, mode = 0)
     @scene = scene
+    # 0 is normal disguise selection, 1 is selection for repair
+    @mode = mode
   end
   
   def pbStartScreen
     @scene.pbStartScene
-    @scene.pbShowDisguises
+    @scene.pbShowDisguises(@mode) # For mode 1, resulting disguise stored in Variable 5 (default value 0 if nothing chosen)
     $scene.spritesetGlobal.playersprite.update
     @scene.pbEndScene
   end
-end
-
-# Chooses disguise to repair
-def pbChooseDisguise
-  disguises = pbGetBrokenDisguises
-  list = []
-  for i in disguises
-    list.push(_INTL("{1} ({2} / {3})", i.name, i.stepcount, i.maxcount))
-  end
-  disguises.push("Cancel")
-  list.push("Cancel")
-  c = pbShowCommands(nil, list, list.length)
-  pbSet(5, disguises[c])
 end
