@@ -157,6 +157,10 @@ Stage = 2
     Description = "Looks like there's a thief on the loose, who just so happens to have the supplies you need... it's a bit dirty, but you should be able to get those supplies if you hand him over to the Nezhas."
     Location = Observatory Route
     Objective = Find thief
+Stage = 3
+    Description = "What next?"
+    Location = Unknown?
+    Objective = Do something I guess.
 #-------------------------------
 [10]
 Name = Radio Tower Delivery

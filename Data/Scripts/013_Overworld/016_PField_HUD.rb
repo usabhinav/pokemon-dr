@@ -5,7 +5,7 @@ class PokemonTemp
 end
 
 class HUD
-  WAYPOINT_PADDING = 4
+  WAYPOINT_PADDING = 4 # Padding around text in blue box
 
   def initialize
     @sprites = {}
@@ -32,16 +32,28 @@ class HUD
   end
 
   def update
+    clear
+    if $PokemonGlobal.playerID == 0 # Zyro's HUD
+      updateZyroHUD
+    elsif $PokemonGlobal.playerID == 1 # Zyree's HUD
+      updateZyreeHUD
+    end
+  end
+
+  def clear
     clearDisguiseSteps
     clearKarmaBar
     clearWaypoint
-    if $PokemonGlobal.playerID == 0 # Zyro's HUD
-      updateWaypoint
-    elsif $PokemonGlobal.playerID == 1 # Zyree's HUD
-      updateWaypoint
-      updateDisguiseSteps
-      updateKarmaBar
-    end
+  end
+
+  def updateZyroHUD
+    updateWaypoint
+  end
+
+  def updateZyreeHUD
+    updateWaypoint
+    updateDisguiseSteps
+    updateKarmaBar
   end
 
   def clearDisguiseSteps
@@ -56,12 +68,14 @@ class HUD
       framebitmap = Bitmap.new("Graphics/Pictures/HUD/frame.png")
       @sprites["disguisebar"].bitmap = framebitmap
       barbitmap = Bitmap.new("Graphics/Pictures/HUD/bar.png")
+      # Green bar for >= 50% steps, yellow for >= 25%, red otherwise
       bar_start_y = 0
       if disguise.stepcount < disguise.maxcount / 4
         bar_start_y = barbitmap.height.to_f * 2 / 3
       elsif disguise.stepcount < disguise.maxcount / 2
         bar_start_y = barbitmap.height.to_f / 3
       end
+      # Calculate how much of bar to show
       barwidth = barbitmap.width.to_f * disguise.stepcount / disguise.maxcount
       barsrcrect = Rect.new(0, bar_start_y, barwidth, barbitmap.height / 3.0)
       pbSetSystemFont(@sprites["disguisebar"].bitmap)
@@ -82,6 +96,7 @@ class HUD
     if $game_switches[SHOW_KARMA_SWITCH]
       @sprites["karmabar"].bitmap = Bitmap.new("Graphics/Pictures/HUD/karmabar.png")
       @sprites["karmaindicator"].bitmap = Bitmap.new("Graphics/Pictures/HUD/karmaindicator.png")
+      # Calculate where to place indicator above karma bar
       bounds = [8 + @sprites["karmabar"].x, 116 + @sprites["karmabar"].x]
       karma = ((pbGet(33) + MAXIMUM_KARMA) * 54.0) / MAXIMUM_KARMA
       new_x = bounds[0] + karma - 15
@@ -98,12 +113,14 @@ class HUD
     if $Trainer.activeQuests.length > 0
       @sprites["waypoint"].bitmap = Bitmap.new(SCREEN_WIDTH, SCREEN_HEIGHT)
       pbSetSystemFont(@sprites["waypoint"].bitmap)
+      @sprites["waypoint"].bitmap.font.size = 25
       q = $Trainer.activeQuests[$Trainer.activeQuests.length - 1]
       objectivetexts = []
-      maxwidth = 0
-      y = 0
-      # Find text with largest width first
+      maxwidth = 0 # Width of background box
+      maxheight = 0 # Height of background box
+      # Find text with largest width first in order to calculate size of box
       for i in 0...q.currentObjectives.length
+        # Construct objective message
         objectivemsg = PBQuests.getStageObjectiveDescription(q.id, q.currentStage, i + 1)
         objectivetext = objectivemsg
         currentcount = q.currentObjectives[i]
@@ -112,14 +129,24 @@ class HUD
           objectivetext += " (#{currentcount} / #{objectivecount})"
         end
         objectivetexts.push(objectivetext)
+        # Update width and height of background box
         textRect = @sprites["waypoint"].bitmap.text_size(objectivetext)
         maxwidth = textRect.width if maxwidth == 0 || maxwidth < textRect.width
-        y += textRect.height
+        maxheight += textRect.height
       end
-      # Draw background before drawing text
-      @sprites["waypoint"].bitmap.fill_rect(0, 0, maxwidth + 2*WAYPOINT_PADDING, y + 2*WAYPOINT_PADDING, Color.new(48, 129, 238))
+      # Draw blue background before drawing text
+      @sprites["waypoint"].bitmap.fill_rect(0, 0, maxwidth + 2*WAYPOINT_PADDING, maxheight + 2*WAYPOINT_PADDING, Color.new(48, 129, 238))
       y = 0
-      for text in objectivetexts
+      for i in 0...objectivetexts.length
+        text = objectivetexts[i]
+        # Color-code objectives if completed or optional
+        if q.currentObjectives[i] >= PBQuests.getStageObjectiveCount(q.id, q.currentStage, i + 1)
+          @sprites["waypoint"].bitmap.font.color = Color.new(159, 218, 64) # Green
+        elsif PBQuests.getStageObjectiveOptional(q.id, q.currentStage, i + 1)
+          @sprites["waypoint"].bitmap.font.color = Color.new(0, 255, 255) # Aqua
+        else
+          @sprites["waypoint"].bitmap.font.color = Color.new(255, 255, 255) # White
+        end
         textRect = @sprites["waypoint"].bitmap.text_size(text)
         @sprites["waypoint"].bitmap.draw_text(WAYPOINT_PADDING, y, textRect.width + 2*WAYPOINT_PADDING, textRect.height + 2*WAYPOINT_PADDING, text)
         y += textRect.height
