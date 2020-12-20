@@ -523,8 +523,8 @@ class PokemonBagScreen
           }
         end
       elsif cmdToss>=0 && command==cmdToss   # Toss item
-        # CHANGED: Can't toss Pocket App
-        if isConst?(item,PBItems,:POCKETAPP)
+        # CHANGED: Can't toss Pocket App or DRC
+        if isConst?(item,PBItems,:POCKETAPP) || isConst?(item,PBItems,:DRC)
           @scene.pbDisplay("You can't toss this!")
           next
         end
@@ -668,8 +668,8 @@ class PokemonBagScreen
     loop do
       item = @scene.pbChooseItem
       break if item==0
-      # CHANGED: Can't deposit Pocket App
-      if isConst?(item,PBItems,:POCKETAPP)
+      # CHANGED: Can't deposit Pocket App or DRC
+      if isConst?(item,PBItems,:POCKETAPP) || isConst?(item,PBItems,:DRC)
         pbDisplay(_INTL("You can't deposit this!"))
         next
       end

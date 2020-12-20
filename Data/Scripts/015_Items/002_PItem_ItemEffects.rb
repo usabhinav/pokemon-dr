@@ -65,6 +65,12 @@ ItemHandlers::UseFromBag.add(:POCKETAPP,proc { |item|
   next 1
 })
 
+# CHANGED: Item handler for DRC
+ItemHandlers::UseFromBag.add(:DRC,proc { |item|
+  pbQuestsScreen
+  next 1
+})
+
 #===============================================================================
 # ConfirmUseInField handlers
 # Return values: true/false

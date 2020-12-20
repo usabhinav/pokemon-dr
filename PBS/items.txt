@@ -689,4 +689,5 @@
 675,PROFSMASK,Professor's Mask,Professor's Masks,8,0,The mask that belongs to The Masked Royal. This pro wrestler apparently sews his mask on a machine himself.,0,0,6,
 676,BLADEFOSSIL,Blade Fossil,Bipedal Fossils,1,1000,A fossil of an ancient Pokémon that lived in the sea in ancient times. It appears to be in the shape of a blade.,0,0,0,
 677,ZYGARDECELL,Zygarde Cell,Zygarde Cells,2,0,"A lost cell belonging to the legendary Pokémon Zygarde. It raises Zygarde's level by one upon use.",1,0,0,
-678,POCKETAPP,Pocket App, Pocket Apps,8,0,"A useful device for storing your Pokemon and items.",2,0,6,
+678,POCKETAPP,Pocket App,Pocket Apps,8,0,"A useful device for storing your Pokemon and items.",2,0,6,
+679,DRC,DRC,DRCs,8,0,"A device to keep track of your missions. May occasionally receive calls from leaders from Dark Rising.",2,0,6,
