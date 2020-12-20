@@ -12,17 +12,17 @@ Pokemon = VIKAVOLT,15
 #-------------------------------
 [NEZHASOLDIER,Soldier,1]
 LoseText = "..."
-Pokemon = HONEDGE,9
+Pokemon = HONEDGE,7
     Moves = PURSUIT,FURYCUTTER,SWORDSDANCE,AERIALACE
 #-------------------------------
 [NEZHASOLDIER,Soldier,2]
 LoseText = "..."
-Pokemon = HOUNDOUR,9
+Pokemon = HOUNDOUR,7
     Moves = BITE,FIREFANG,HOWL,SUPERFANG
 #-------------------------------
 [NEZHASOLDIER,Commander]
 LoseText = "..."
-Pokemon = DOUBLADE,10
+Pokemon = DOUBLADE,9
     Moves = PURSUIT,SWORDSDANCE,BRUTALSWING,CUT
 #-------------------------------
 [BISON,Bison,1]
@@ -62,6 +62,15 @@ Pokemon = GRANBULL,8
     Ability = 0
 #-------------------------------
 [BUGCATCHER_F,Janet]
+LoseText = "..."
+Pokemon = NINCADA,12
+    Moves = HARDEN,SLASH,BUGBITE,MUDSLAP
+Pokemon = SURSKIT,12
+    Moves = PSYBEAM,BUBBLEBEAM,INFESTATION,MUDSHOT
+Pokemon = YANMA,12
+    Moves = DETECT,STRUGGLEBUG,SUPERSONIC,WINGATTACK
+#-------------------------------
+[BUGCATCHER_F,Janet,1]
 LoseText = "..."
 Pokemon = NINCADA,12
     Moves = HARDEN,SLASH,BUGBITE,MUDSLAP

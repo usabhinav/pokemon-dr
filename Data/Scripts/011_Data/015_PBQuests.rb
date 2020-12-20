@@ -125,7 +125,7 @@ def pbActivateQuest(id)
   id = getConst(PBQuests, id) if id.is_a?(Symbol)
   quest = Quest.new(id)
   $Trainer.activeQuests.push(quest)
-  pbMessage(_INTL("Received quest {1}!", quest.name))
+  pbMessage(_INTL("Received {1} {2}!", $PokemonGlobal.playerID==0 ? "mission" : "quest", quest.name))
   $PokemonTemp.hud.updateWaypoint
 end
 
@@ -163,7 +163,7 @@ def pbCompleteQuest(id)
   if quest
     quest.completed = true
     $Trainer.completedQuests.push($Trainer.activeQuests.delete(quest))
-    pbMessage(_INTL("Completed quest {1}!", quest.name))
+    pbMessage(_INTL("Completed {1} {2}!", $PokemonGlobal.playerID==0 ? "mission" : "quest", quest.name))
     $PokemonTemp.hud.clearWaypoint
   end
 end
