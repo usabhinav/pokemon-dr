@@ -70,15 +70,6 @@ Pokemon = SURSKIT,12
 Pokemon = YANMA,12
     Moves = DETECT,STRUGGLEBUG,SUPERSONIC,WINGATTACK
 #-------------------------------
-[BUGCATCHER_F,Janet,1]
-LoseText = "..."
-Pokemon = NINCADA,12
-    Moves = HARDEN,SLASH,BUGBITE,MUDSLAP
-Pokemon = SURSKIT,12
-    Moves = PSYBEAM,BUBBLEBEAM,INFESTATION,MUDSHOT
-Pokemon = YANMA,12
-    Moves = DETECT,STRUGGLEBUG,SUPERSONIC,WINGATTACK
-#-------------------------------
 [BUGCATCHER_F,Kayla]
 LoseText = "..."
 Pokemon = DEWPIDER,12

@@ -173,3 +173,13 @@ Stage = 1
     Description = Deliver the supplies to the radio tower.
     Location = Dark Rising HQ
     Objective = Deliver supplies
+#-------------------------------
+[11]
+Name = Priestess of Light
+InternalName = PRIESTESSOFLIGHT
+Summary = "The Fisherman Gasfut wants you to find his long-lost daughter, Alice. You don't know where she was last seen, so you'll need to do a bit of detective work to find her."
+Completed = "You helped Gasfut and Alice. Yay!"
+Stage = 1
+    Description = "Keep an eye out for any mention of a girl with golden hair."
+    Location = Unknown
+    Objective = Find Alice

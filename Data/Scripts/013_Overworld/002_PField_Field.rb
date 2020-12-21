@@ -450,6 +450,20 @@ Events.onMapChange += proc { |_sender,e|
   end
 }
 
+# CHANGED: Set trainers that have been battled once to v2
+Events.onMapChange += proc { |_sender,e|
+  oldid = e[0] # previous map ID, 0 if no map ID
+  for event in $game_map.events.values
+    # Ignores events that use Trainer(X) for other purposes
+    if event.name[0...8] == "Trainer(" && event.character_name != "Blank"
+      if $game_self_switches[[$game_map.map_id,event.id,"A"]] && !$game_self_switches[[$game_map.map_id,event.id,"B"]]
+        $game_self_switches[[$game_map.map_id,event.id,"B"]] = true
+        $game_map.need_refresh = true
+      end
+    end
+  end
+}
+
 Events.onMapSceneChange += proc { |_sender,e|
   scene      = e[0]
   mapChanged = e[1]

@@ -153,6 +153,22 @@ Events.onTrainerPartyLoad += proc { |_sender, e|
   end
 }
 
+# CHANGED: Add +3 levels to v2 of normal trainers
+Events.onTrainerPartyLoad += proc { |_sender, e|
+  if e[0] # Trainer data should exist to be loaded, but may not exist somehow
+    trainer = e[0][0] # A PokeBattle_Trainer object of the loaded trainer
+    items = e[0][1]   # An array of the trainer's items they can use
+    party = e[0][2]   # An array of the trainer's Pokémon
+    if $game_switches[83] # Activated whenever a trainer rebattles the player
+      for i in party
+        newlevel = [i.level + 3, PBExperience.maxLevel].min
+        i.level = newlevel
+        i.calcStats
+      end
+    end
+  end
+}
+
 # CHANGED: DR Underdome battles
 Events.onTrainerPartyLoad += proc { |_sender, e|
   if e[0] # Trainer data should exist to be loaded, but may not exist somehow

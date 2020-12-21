@@ -106,6 +106,14 @@ module PBQuests
   end
 end
 
+def pbHasCompletedQuest?(id)
+  id = getConst(PBQuests, id) if id.is_a?(Symbol)
+  for q in $Trainer.completedQuests
+    return true if q.id == id
+  end
+  return false
+end
+
 def pbHasActiveQuest?(id)
   quest = pbGetActiveQuest(id)
   return !quest.nil?
@@ -113,11 +121,10 @@ end
 
 def pbGetActiveQuest(id)
   id = getConst(PBQuests, id) if id.is_a?(Symbol)
-  quest = nil
   for q in $Trainer.activeQuests
-    quest = q if q.id == id
+    return q if q.id == id
   end
-  return quest
+  return nil
 end
 
 def pbActivateQuest(id)
