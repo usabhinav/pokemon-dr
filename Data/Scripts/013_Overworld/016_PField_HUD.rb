@@ -7,6 +7,8 @@ end
 class HUD
   WAYPOINT_PADDING = 4 # Padding around text in blue box
 
+  attr_accessor :displayHUD # Toggles HUD display
+
   def initialize
     @sprites = {}
     # Disguise Limit
@@ -29,10 +31,22 @@ class HUD
     @sprites["waypoint"] = Sprite.new(Spriteset_Global.viewport2)
     @sprites["waypoint"].bitmap = Bitmap.new(SCREEN_WIDTH, SCREEN_HEIGHT)
     @sprites["waypoint"].z = 999
+    # HUD Display Toggle
+    @displayHUD = true
+  end
+
+  def toggleDisplay
+    @displayHUD = !@displayHUD
+    if @displayHUD
+      update
+    else
+      clear
+    end
   end
 
   def update
     clear
+    return if !@displayHUD
     if $PokemonGlobal.playerID == 0 # Zyro's HUD
       updateZyroHUD
     elsif $PokemonGlobal.playerID == 1 # Zyree's HUD
@@ -63,6 +77,7 @@ class HUD
   def updateDisguiseSteps
     return if $PokemonGlobal.playerID != 1 # Only works for Zyree's HUD
     clearDisguiseSteps
+    return if !@displayHUD
     if $Trainer && $Trainer.equippedDisguise
       disguise = $Trainer.equippedDisguise
       framebitmap = Bitmap.new("Graphics/Pictures/HUD/frame.png")
@@ -93,6 +108,7 @@ class HUD
   def updateKarmaBar
     return if $PokemonGlobal.playerID != 1 # Only works for Zyree's HUD
     clearKarmaBar
+    return if !@displayHUD
     if $game_switches[SHOW_KARMA_SWITCH]
       @sprites["karmabar"].bitmap = Bitmap.new("Graphics/Pictures/HUD/karmabar.png")
       @sprites["karmaindicator"].bitmap = Bitmap.new("Graphics/Pictures/HUD/karmaindicator.png")
@@ -110,6 +126,7 @@ class HUD
 
   def updateWaypoint
     clearWaypoint
+    return if !@displayHUD
     if $Trainer.activeQuests.length > 0
       @sprites["waypoint"].bitmap = Bitmap.new(SCREEN_WIDTH, SCREEN_HEIGHT)
       pbSetSystemFont(@sprites["waypoint"].bitmap)

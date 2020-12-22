@@ -39,6 +39,7 @@ module Input
   F7        = 31
   F8        = 32
   F9        = 33
+  T         = 34 # CHANGED: Added T button
   LeftMouseKey  = 1
   RightMouseKey = 2
   # GetAsyncKeyState or GetKeyState will work here
@@ -127,6 +128,7 @@ module Input
     when Input::F7;        return [0x76]                # F7
     when Input::F8;        return [0x77]                # F8
     when Input::F9;        return [0x78]                # F9
+    when Input::T;         return [0x54]                # CHANGED: T
     else; return []
     end
   end

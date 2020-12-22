@@ -606,7 +606,7 @@ def pbSwitchCharacter(id, name = nil, outfit = 0)
   # Assumes that if called through event, then meta[PBCharacterData::MapID]
   # was set to -1 earlier
   # Handles fade transition between characters
-  if meta[PBCharacterData::MapID] >= 0 && $PokemonGlobal.commandCharacterSwitchOn
+  if meta[PBCharacterData::MapID] >= 0 && ($DEBUG || $PokemonGlobal.commandCharacterSwitchOn)
     $game_temp.player_new_map_id       = meta[PBCharacterData::MapID]
     $game_temp.player_new_x            = meta[PBCharacterData::X]
     $game_temp.player_new_y            = meta[PBCharacterData::Y]

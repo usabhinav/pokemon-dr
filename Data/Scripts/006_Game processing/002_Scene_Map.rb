@@ -202,6 +202,8 @@ class Scene_Map
         end
       elsif Input.press?(Input::F9)
         $game_temp.debug_calling = true if $DEBUG
+      elsif Input.trigger?(Input::T) # CHANGED: T button to toggle HUD
+        $PokemonTemp.hud.toggleDisplay
       end
     end
     unless $game_player.moving?
