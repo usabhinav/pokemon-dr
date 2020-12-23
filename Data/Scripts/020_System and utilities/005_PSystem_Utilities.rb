@@ -1336,3 +1336,16 @@ end
 def pbCanTransform?
   return $game_switches[Z_TRANSFORM_SWITCH] && $Trainer.party.length <= 5
 end
+
+# CHANGED: Method to rank up Zyro
+def pbRankup
+  return if $PokemonGlobal.playerID != 0
+  ranks = ["C", "B", "A", "S", "Z"]
+  for i in 0...ranks.length
+    if $Trainer.rank == ranks[i] && i < ranks.length - 1
+      $Trainer.rank = ranks[i + 1]
+      pbMessage(_INTL("Ranked up from {1} to {2}!", ranks[i], $Trainer.rank))
+      return
+    end
+  end
+end

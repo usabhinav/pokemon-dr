@@ -15,13 +15,15 @@ class PokeBattle_Trainer
   attr_accessor :pokedex    # Whether the Pokédex was obtained
   attr_accessor :pokegear   # Whether the Pokégear was obtained
   attr_writer   :language
-  attr_accessor :lucario            # CHANGED: Lucario Storage
+  attr_accessor :lucario            # CHANGED: Lucario Storage (for Zyree)
   attr_accessor :zygarde            # CHANGED: Zygarde Pokemon
-  attr_accessor :obtainedDisguises  # CHANGED: List of disguises obtained by player
-  attr_accessor :equippedDisguise   # CHANGED: Currently equipped disguise
+  attr_accessor :obtainedDisguises  # CHANGED: List of disguises obtained by player (for Zyree)
+  attr_accessor :equippedDisguise   # CHANGED: Currently equipped disguise (for Zyree)
   attr_accessor :activeQuests       # CHANGED: Currently active quests
   attr_accessor :completedQuests    # CHANGED: Completed quests
+  attr_accessor :trackingQuest      # CHANGED: Tracking Quest ID
   attr_accessor :nuzlockeMaps       # CHANGED: Nuzlocke maps
+  attr_accessor :rank               # CHANGED: Rank (for Zyro)
 
   def trainerTypeName   # Name of this trainer type (localized)
     return PBTrainers.getName(@trainertype) rescue _INTL("PkMn Trainer")
@@ -284,10 +286,12 @@ class PokeBattle_Trainer
     else
       @zygarde         = nil
     end
-    @obtainedDisguises = []  # CHANGED: Initialized obtainedDisguises
-    @equippedDisguise  = nil # CHANGED: Initialized equippedDisguise
-    @activeQuests      = []  # CHANGED: Initialized activeQuests
-    @completedQuests   = []  # CHANGED: Initialized completedQuests
+    @obtainedDisguises = []       # CHANGED: Initialized obtainedDisguises
+    @equippedDisguise  = nil      # CHANGED: Initialized equippedDisguise
+    @activeQuests      = []       # CHANGED: Initialized activeQuests
+    @completedQuests   = []       # CHANGED: Initialized completedQuests
+    @trackingQuest     = -1       # CHANGED: Initialized trackingQuest
     @nuzlockeMaps      = Hash.new # CHANGED: Initialized nuzlockeMaps
+    @rank              = "C"      # CHANGED: Initialized rank
   end
 end

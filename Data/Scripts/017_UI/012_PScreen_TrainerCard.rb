@@ -63,6 +63,11 @@ class PokemonTrainerCard_Scene
        [_INTL("Started"),34,256,0,baseColor,shadowColor],
        [starttime,302,256,1,baseColor,shadowColor]
     ]
+    # CHANGED: Draw rank for Zyro
+    if $PokemonGlobal.playerID == 0
+      textPositions.push([_INTL("Rank"),332,256,0,baseColor,shadowColor])
+      textPositions.push([$Trainer.rank,468,256,1,baseColor,shadowColor])
+    end
     pbDrawTextPositions(overlay,textPositions)
     x = 72
     region = pbGetCurrentRegion(0) # Get the current region

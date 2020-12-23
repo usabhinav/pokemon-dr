@@ -172,6 +172,9 @@ def pbCompleteQuest(id)
     $Trainer.completedQuests.push($Trainer.activeQuests.delete(quest))
     pbMessage(_INTL("Completed {1} {2}!", $PokemonGlobal.playerID==0 ? "mission" : "quest", quest.name))
     $PokemonTemp.hud.clearWaypoint
+    if $PokemonGlobal.playerID == 0 && PBQuests.getMain(id) && $Trainer.completedQuests.length % 10 == 0
+      pbRankup
+    end
   end
 end
 
