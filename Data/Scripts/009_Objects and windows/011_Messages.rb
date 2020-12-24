@@ -1166,53 +1166,17 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   end
   atTop = (msgwindow.y==0)
 
-# CHANGED: Positioning for speech arrow and player's face  
-talkingEventID = pbGet(30)
-arrowSprite = nil
-expression = pbGet(31)
-faceSprite = nil
-if talkingEventID > 0
-  talkingEvent = $game_map.events[talkingEventID]
-  picY = talkingEvent.screen_y - SCREEN_ZOOM * 32
-  picHeight = Graphics.height - msgwindow.height - picY + 5
-  if picHeight > 0
-    picWidth = 256 * (picHeight / 192)
-    if talkingEvent.screen_x <= Graphics.width / 2
-      picX = talkingEvent.screen_x
-      if picWidth + picX > Graphics.width - 7.0
-        picWidth = Graphics.width - 7.0 - picX
-      end
-      arrowSprite = IconSprite.new(picX, picY, msgwindow.viewport)
-      arrowSprite.setBitmap("Graphics/Pictures/arrowRight.png")
-      arrowSprite.z = msgwindow.z
-      arrowSprite.zoom_x = picWidth / 256
-      arrowSprite.zoom_y = picHeight / 192
-    else
-      picX = talkingEvent.screen_x - picWidth
-      if picX < 7.0
-        picX = 7.0
-        picWidth = talkingEvent.screen_x - picX
-      end
-      arrowSprite = IconSprite.new(picX, picY, msgwindow.viewport)
-      arrowSprite.setBitmap("Graphics/Pictures/arrowLeft.png")
-      arrowSprite.z = msgwindow.z
-      arrowSprite.zoom_x = picWidth / 256
-      arrowSprite.zoom_y = picHeight / 192
+  # CHANGED: Positioning for speech arrow or character's face
+  arrowOrFaceSprite = pbShowSpeechArrowOrFace(msgwindow)
+  if !arrowOrFaceSprite
+    expression = $PokemonTemp.expression
+    # Player's expression
+    if expression.is_a?(String) && expression != ""
+      trainerID = sprintf("%.3d", $Trainer.metaID)
+      facebitmap = Bitmap.new("Graphics/Pictures/Faces/trface#{trainerID}_#{expression}.png")
+      arrowOrFaceSprite = pbShowFace(msgwindow, facebitmap)
     end
   end
-end
-if expression.is_a?(String) && expression.length > 0
-  trainerID = sprintf("%.3d", $Trainer.metaID)
-  expression = "_#{expression}"
-  faceX = Graphics.width - 140 - 19
-  # Special case for Zyro Shy face
-  faceX -= 25 if expression == "_shy" && trainerID == "000"
-  faceY = Graphics.height - msgwindow.height - 135
-  filename = "Graphics/Pictures/Faces/trface#{trainerID}#{expression}.png"
-  faceSprite = IconSprite.new(faceX, faceY, msgwindow.viewport)
-  faceSprite.setBitmap(filename)
-  faceSprite.z = msgwindow.z
-end
 
   ########## Show text #############################
   msgwindow.text = text
@@ -1315,16 +1279,10 @@ end
   end
   Input.update   # Must call Input.update again to avoid extra triggers
   
-  # CHANGED: Erase speech arrow
-  if talkingEventID != 0
-    arrowSprite.dispose if arrowSprite
-    pbSet(30, 0)
-  end
-  # CHANGED: Erase face sprite
-  if expression.is_a?(String) && expression.length > 0
-    faceSprite.dispose if faceSprite
-    pbSet(31, "")
-  end
+  # CHANGED: Erase arrow or face sprite
+  arrowOrFaceSprite.dispose if arrowOrFaceSprite
+  pbSet(30, 0)
+  $PokemonTemp.expression = ""
   
   msgwindow.letterbyletter=oldletterbyletter
   if commands

@@ -213,6 +213,7 @@ class PokemonTemp
   attr_accessor :surfJump
   attr_accessor :endSurf
   attr_accessor :forceSingleBattle
+  attr_accessor :expression # CHANGED: Used to store player's expression
 
   def initialize
     @menuLastChoice         = 0

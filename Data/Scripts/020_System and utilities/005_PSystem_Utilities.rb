@@ -1268,7 +1268,61 @@ end
 
 # CHANGED: Method to set player's expression
 def pbSetExpression(expression="expressionless")
-  pbSet(31, expression)
+  $PokemonTemp.expression = expression
+end
+
+# CHANGED: Method to show speech arrow to event
+# Note: Assumes Variable 30 already contains event ID
+def pbShowSpeechArrowOrFace(msgwindow)
+  talkingEventID = pbGet(30)
+  arrowSprite = nil
+  if talkingEventID > 0
+    talkingEvent = $game_map.events[talkingEventID]
+    # Side characters in Zyro's or Zyree's teams get faces shown instead of speech arrows
+    facePicture = "Graphics/Pictures/Faces/#{talkingEvent.character_name}.png"
+    if safeExists?(facePicture)
+      return pbShowFace(msgwindow, Bitmap.new(facePicture))
+    end
+    picY = talkingEvent.screen_y - SCREEN_ZOOM * 32
+    picHeight = Graphics.height - msgwindow.height - picY + 5
+    # If event is on-screen
+    if picHeight > 0
+      picWidth = 256 * (picHeight / 192)
+      arrowSprite = Sprite.new(msgwindow.viewport)
+      # Left side of screen
+      if talkingEvent.screen_x <= Graphics.width / 2
+        picX = talkingEvent.screen_x
+        if picWidth + picX > Graphics.width - 7.0
+          picWidth = Graphics.width - 7.0 - picX
+        end
+        arrowSprite.bitmap = Bitmap.new("Graphics/Pictures/arrowRight.png")
+      # Right side of screen
+      else
+        picX = talkingEvent.screen_x - picWidth
+        if picX < 7.0
+          picX = 7.0
+          picWidth = talkingEvent.screen_x - picX
+        end
+        arrowSprite.bitmap = Bitmap.new("Graphics/Pictures/arrowLeft.png")
+      end
+      arrowSprite.x = picX
+      arrowSprite.y = picY
+      arrowSprite.z = msgwindow.z
+      arrowSprite.zoom_x = picWidth / 256
+      arrowSprite.zoom_y = picHeight / 192
+    end
+  end
+  return arrowSprite
+end
+
+# CHANGED: Method to show face from Faces folder
+def pbShowFace(msgwindow, facebitmap)
+  faceSprite = Sprite.new(msgwindow.viewport)
+  faceSprite.bitmap = facebitmap
+  faceSprite.x = Graphics.width - facebitmap.width - 19
+  faceSprite.y = Graphics.height - msgwindow.height - facebitmap.height + 5
+  faceSprite.z = msgwindow.z
+  return faceSprite
 end
 
 # CHANGED: Method to choose gamemode at start of game
