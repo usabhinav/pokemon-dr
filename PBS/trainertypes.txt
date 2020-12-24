@@ -99,3 +99,4 @@
 98,SCIENTIST_F,Scientist,20,,,,Female,100,
 99,MARYSHELLEY,Scientist,20,,,,Female,100,
 100,DUDLEY,Scientist,20,,,,Male,100,
+101,FREYA,Special Cadet,20,,,,Female,100,
