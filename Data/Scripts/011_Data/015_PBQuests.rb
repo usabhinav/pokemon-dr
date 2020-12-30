@@ -119,6 +119,16 @@ def pbHasActiveQuest?(id)
   return !quest.nil?
 end
 
+def pbHasCompletedStageNum?(id, stageNum)
+  id = getConst(PBQuests, id) if id.is_a?(Symbol)
+  return true if pbHasCompletedQuest?(id)
+  currentNum = pbGetStageNum(id)
+  if currentNum
+    return currentNum > stageNum
+  end
+  return false
+end
+
 def pbGetActiveQuest(id)
   id = getConst(PBQuests, id) if id.is_a?(Symbol)
   for q in $Trainer.activeQuests
@@ -149,7 +159,7 @@ def pbAdvanceQuest(id, stage, objective = 1)
   quest = pbGetActiveQuest(id)
   if quest
     if stage != quest.currentStage
-      raise _INTL("You are trying to advance a stage that you are not on! Please do stage checking in the event itself.")
+      raise _INTL("Trying to advance stage {1} when player is on stage {2}. Please make sure that your event is advancing the correct stage, and that the player will have reached the correct stage upon triggering your event.\n", stage, quest.currentStage)
     end
     quest.currentObjectives[objective - 1] += 1
     if pbQuestStageComplete?(quest.id, quest.currentStage)
@@ -182,6 +192,7 @@ def pbGetStageNum(id)
   id = getConst(PBQuests, id) if id.is_a?(Symbol)
   quest = pbGetActiveQuest(id)
   return quest.currentStage if quest
+  return nil
 end
 
 def pbQuestStageComplete?(id, stage)
