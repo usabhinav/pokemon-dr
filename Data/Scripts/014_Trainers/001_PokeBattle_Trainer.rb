@@ -24,6 +24,7 @@ class PokeBattle_Trainer
   attr_accessor :trackingQuest      # CHANGED: Tracking Quest ID
   attr_accessor :nuzlockeMaps       # CHANGED: Nuzlocke maps
   attr_accessor :rank               # CHANGED: Rank (for Zyro)
+  attr_accessor :confidantLinks     # CHANGED: Confidant Links (for Zyro)
 
   def trainerTypeName   # Name of this trainer type (localized)
     return PBTrainers.getName(@trainertype) rescue _INTL("PkMn Trainer")
@@ -292,6 +293,14 @@ class PokeBattle_Trainer
     @completedQuests   = []       # CHANGED: Initialized completedQuests
     @trackingQuest     = -1       # CHANGED: Initialized trackingQuest
     @nuzlockeMaps      = Hash.new # CHANGED: Initialized nuzlockeMaps
-    @rank              = "C"      # CHANGED: Initialized rank
+    if trainertype == 0 # For Zyro
+      @rank            = "C"      # CHANGED: Initialized rank
+      @confidantLinks  = {        # CHANGED: Initialized confidantLinks
+        "Bison" => 0,
+        "Fiona" => 0,
+        "Joel" => 0,
+        "Leah" => 0
+      }
+    end
   end
 end

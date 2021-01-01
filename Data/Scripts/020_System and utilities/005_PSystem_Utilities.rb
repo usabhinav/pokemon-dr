@@ -1403,3 +1403,10 @@ def pbRankup
     end
   end
 end
+
+# CHANGED: Method to increase one of Zyro's Confidant Links
+def pbRaiseConfidantLink(name, amount)
+  next if $PokemonGlobal.playerID != 0 || !$Trainer.confidantLinks[name]
+  $Trainer.confidantLinks[name] += amount
+  pbMessage(_INTL("C. Link with {1} raised +{2}.", name, amount))
+end
