@@ -113,6 +113,7 @@ class PokemonPauseMenu
     cmdDisguises= -1 # CHANGED: Added Disguises cmd
     cmdGamemode = -1 # CHANGED: Added Gamemode cmd
     cmdQuests   = -1 # CHANGED: Added Quests cmd
+    cmdCLinks   = -1 # CHANGED: Added C. Links cmd
     cmdDebug    = -1
     cmdControls = -1 # CHANGED: Set Controls Screen
     cmdQuit     = -1
@@ -133,6 +134,8 @@ class PokemonPauseMenu
     if $PokemonGlobal.playerID == 1 && ($Trainer.activeQuests.length > 0 || $Trainer.completedQuests.length > 0)
       commands[cmdQuests = commands.length]   = _INTL("Quests")
     end
+    # CHANGED: Added C. Links to pause menu for Zyro
+    commands[cmdCLinks = commands.length]   = _INTL("C. Links") if pbCanShowConfidantLinks?
     commands[cmdTrainer = commands.length]  = $Trainer.name
     # CHANGED: Multiple Protagonists
     if ($DEBUG || $PokemonGlobal.commandCharacterSwitchOn) && !pbInSafari? && !pbInBugContest? && !pbBattleChallenge.pbInProgress?
@@ -331,6 +334,9 @@ class PokemonPauseMenu
       # CHANGED: Quests/Missions code
       elsif cmdQuests >= 0 && command == cmdQuests
         pbQuestsScreen
+      # CHANGED: Confidant Links code
+      elsif cmdCLinks >= 0 && command == cmdCLinks
+        pbCLinksScreen
       # CHANGED: Set Controls Screen
       elsif cmdControls>=0 && command==cmdControls
         scene=PokemonControlsScene.new

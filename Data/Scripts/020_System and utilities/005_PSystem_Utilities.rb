@@ -1410,3 +1410,19 @@ def pbRaiseConfidantLink(name, amount)
   $Trainer.confidantLinks[name] += amount
   pbMessage(_INTL("C. Link with {1} raised +{2}.", name, amount))
 end
+
+# CHANGED: Method to check if C. Links can be shown
+def pbCanShowConfidantLinks?
+  return false if $PokemonGlobal.playerID != 0
+  for name in $Trainer.confidantLinks.keys
+    return true if $Trainer.confidantLinks[name] > 0
+  end
+  return false
+end
+
+# CHANGED: Temp method to show C. Links
+def pbCLinksScreen
+  for name in $Trainer.confidantLinks.keys
+    pbMessage(_INTL("{1}: {2}/10", name, $Trainer.confidantLinks[name]))
+  end
+end
