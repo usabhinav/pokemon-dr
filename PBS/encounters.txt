@@ -1,27 +1,5 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
-002 # Dark Rising HQ
-20,10,10
-Water
-    TENTACOOL,8,10
-    MANTYKE,8,10
-    REMORAID,8,10
-    REMORAID,8,10
-    REMORAID,8,10
-OldRod
-    MAGIKARP,8,10
-    MAGIKARP,8,10
-GoodRod
-    BARBOACH,8,10
-    SHELLDER,8,10
-    KRABBY,8,10
-SuperRod
-    CHINCHOU,8,10
-    QWILFISH,8,10
-    CORSOLA,8,10
-    STARYU,8,10
-    STARYU,8,10
-#-------------------------------
 003 # Deku Route
 20,10,10
 Land
@@ -53,9 +31,18 @@ Land
     YANMA,13
     CARNIVINE,13
     TROPIUS,13
-GoodRod
+ZygardeFish
+    WOOPER,11,13
+    WOOPER,11,13
+    WOOPER,11,13
     WOOPER,11,13
     POLIWAG,11,13
+    POLIWAG,11,13
+    TYMPOLE,11,13
+    TYMPOLE,11,13
+    TYMPOLE,11,13
+    TYMPOLE,11,13
+    TYMPOLE,11,13
     TYMPOLE,11,13
 #-------------------------------
 011 # King's Path
@@ -105,9 +92,18 @@ Land
     COMBEE,13,15
     BUNEARY,13,15
     COMBEE,13,15
-GoodRod
+ZygardeFish
+    TENTACOOL,10,12
+    TENTACOOL,10,12
+    TENTACOOL,10,12
     TENTACOOL,10,12
     HORSEA,10,12
+    HORSEA,10,12
+    AZURILL,13,15
+    AZURILL,13,15
+    AZURILL,13,15
+    AZURILL,13,15
+    AZURILL,13,15
     AZURILL,13,15
 #-------------------------------
 038 # Pepper Ridge Farm
@@ -125,9 +121,18 @@ Land
     COMBEE,13,15
     BUNEARY,13,15
     COMBEE,13,15
-GoodRod
+ZygardeFish
+    TENTACOOL,10,12
+    TENTACOOL,10,12
+    TENTACOOL,10,12
     TENTACOOL,10,12
     HORSEA,10,12
+    HORSEA,10,12
+    AZURILL,13,15
+    AZURILL,13,15
+    AZURILL,13,15
+    AZURILL,13,15
+    AZURILL,13,15
     AZURILL,13,15
 #-------------------------------
 039 # Observatory Route
@@ -161,6 +166,19 @@ Land
     MAREANIE,15,18
     PHANTUMP,14,17
     PHANTUMP,14,17
+ZygardeFish
+    WINGULL,13,16
+    TYMPOLE,13,16
+    WOOPER,13,16
+    WOOPER,13,16
+    CHINCHOU,14,17
+    POLIWAG,15,17
+    WINGULL,13,16
+    CHINCHOU,14,17
+    POLIWAG,15,17
+    TOTODILE,15,17
+    POLIWAG,15,17
+    TOTODILE,15,17
 #-------------------------------
 077 # Meridian Route
 20,10,10

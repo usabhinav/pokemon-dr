@@ -1244,11 +1244,19 @@ end
 
 # CHANGED: Added event handler for Zygarde fishing
 def pbZygardeFish
-  encounter=$PokemonEncounters.hasEncounter?(EncounterTypes::GoodRod)
+  encounter=$PokemonEncounters.hasEncounter?(EncounterTypes::ZygardeFish)
   if pbFishing(encounter,2)
-    pbEncounter(EncounterTypes::GoodRod)
+    pbEncounter(EncounterTypes::ZygardeFish)
   end
 end
+
+Events.onAction+=proc{|sender,e|
+  next if $PokemonGlobal.surfing
+  next if pbGetMetadata($game_map.map_id,MetadataBicycleAlways)
+  next if !PBTerrain.isFishable?(pbFacingTerrainTag)
+  next if $game_player.pbFacingEvent
+  pbZygardeFish
+}
 
 # Show waiting dots before a Pokémon bites
 def pbWaitMessage(msgWindow,time)

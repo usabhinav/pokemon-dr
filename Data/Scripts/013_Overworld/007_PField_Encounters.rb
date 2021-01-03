@@ -12,6 +12,7 @@ module EncounterTypes
   LandDay      = 10
   LandNight    = 11
   BugContest   = 12
+  ZygardeFish  = 13 # CHANGED: Added new encounter type for Zygarde fishing (same as Land encounter)
   Names = [
      "Land",
      "Cave",
@@ -25,7 +26,8 @@ module EncounterTypes
      "LandMorning",
      "LandDay",
      "LandNight",
-     "BugContest"
+     "BugContest",
+     "ZygardeFish" # CHANGED: Name for Zygarde fishing encounter type
   ]
   EnctypeChances = [
      [20,20,10,10,10,10,5,5,4,4,1,1],
@@ -40,10 +42,11 @@ module EncounterTypes
      [20,20,10,10,10,10,5,5,4,4,1,1],
      [20,20,10,10,10,10,5,5,4,4,1,1],
      [20,20,10,10,10,10,5,5,4,4,1,1],
-     [20,20,10,10,10,10,5,5,4,4,1,1]
+     [20,20,10,10,10,10,5,5,4,4,1,1],
+     [20,20,10,10,10,10,5,5,4,4,1,1] # CHANGED: Zygarde fishing encounter density (same as Land)
   ]
-  EnctypeDensities   = [25, 10, 10, 0, 0, 0, 0, 0, 0, 25, 25, 25, 25]
-  EnctypeCompileDens = [ 1,  2,  3, 0, 0, 0, 0, 0, 0,  1,  1,  1,  1]
+  EnctypeDensities   = [25, 10, 10, 0, 0, 0, 0, 0, 0, 25, 25, 25, 25, 0] # CHANGED: Added 0 density for Zygarde fishing
+  EnctypeCompileDens = [ 1,  2,  3, 0, 0, 0, 0, 0, 0,  1,  1,  1,  1, 0] # CHANGED: Added 0 compile density for Zygarde fishing
 end
 
 
