@@ -334,3 +334,36 @@ Pokemon = SWABLU,1
     Moves = TAKEDOWN,ICEBEAM,TOXIC,AERIALACE
 Pokemon = FARFETCHD,1
     Moves = SWORDSDANCE,STEELWING,NIGHTSLASH,ROOST
+#-------------------------------
+[BUGCATCHER_F,Michelle]
+LoseText = "..."
+Pokemon = PETILIL,19
+    Moves = SLEEPPOWDER,MEGADRAIN,MAGICALLEAF,GROWTH
+Pokemon = MASQUERAIN,22
+    Moves = QUIVERDANCE,SWEETSCENT,GUST,BUBBLE
+Pokemon = WHIRLIPEDE,24
+    Moves = BUGBITE,IRONDEFENSE,POISONTAIL,ROLLOUT
+#-------------------------------
+[LASS_3,Jasmine]
+LoseText = "..."
+Pokemon = COTTONEE,19
+    Moves = FAIRYWIND,GROWTH,RAZORLEAF,STUNSPORE
+Pokemon = DEERLING,21
+    Moves = LEECHSEED,SANDATTACK,TAKEDOWN,DOUBLEKICK
+#-------------------------------
+[LASS_1,Sakura]
+LoseText = "..."
+Pokemon = PHANTUMP,19
+    Moves = INGRAIN,FEINTATTACK,FORESTCURSE,WILLOWISP
+Pokemon = MAREANIE,21
+    Moves = TOXIC,BITE,WIDEGUARD,PINMISSLE
+Pokemon = FROGADIER,23
+    Moves = SMOKESCREEN,QUICKATTACK,AERIALACE,DOUBLETEAM
+#-------------------------------
+[YOUNGSTER_M,Jerry]
+LoseText = "..."
+Pokemon = TROPIUS,21
+    Moves = RAZORLEAF,AERIALACE,SWEETSCENT,GUST
+Pokemon = VOLBEAT,23
+    Gender = male
+    Moves = QUICKATTACK,MOONLIGHT,CHARGEBEAM,CONFUSERAY

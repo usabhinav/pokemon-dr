@@ -180,6 +180,22 @@ ZygardeFish
     POLIWAG,15,17
     TOTODILE,15,17
 #-------------------------------
+044 # Doldrum's Route
+25,10,10
+Land
+    EKANS,13,16
+    DEERLING,13,16
+    COTTONEE,14,17
+    VOLBEAT,14,17
+    PETILIL,14,17
+    VENIPEDE,14,17
+    COTTONEE,14,17
+    VOLBEAT,14,17
+    MAREANIE,15,18
+    MAREANIE,15,18
+    PETILIL,14,17
+    PETILIL,14,17
+#-------------------------------
 077 # Meridian Route
 20,10,10
 Land
