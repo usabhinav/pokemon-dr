@@ -101,4 +101,3 @@
 100,DUDLEY,Scientist,20,,,,Male,100,
 101,FREYA,Special Cadet,20,,,,Female,100,
 102,KAYO,Special Cadet,20,,,,Male,100,
-103,LASS_3,Lass,10,,,,Female,100,

@@ -344,7 +344,7 @@ Pokemon = MASQUERAIN,22
 Pokemon = WHIRLIPEDE,24
     Moves = BUGBITE,IRONDEFENSE,POISONTAIL,ROLLOUT
 #-------------------------------
-[LASS_3,Jasmine]
+[LASS_1,Jasmine]
 LoseText = "..."
 Pokemon = COTTONEE,19
     Moves = FAIRYWIND,GROWTH,RAZORLEAF,STUNSPORE
