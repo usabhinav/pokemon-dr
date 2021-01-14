@@ -1329,16 +1329,19 @@ end
 def pbChooseGamemode
   pbMessage(_INTL("Please select a gamemode."))
   loop do
-    modes = [_INTL("Normal"), _INTL("Hard"), _INTL("Extreme"), _INTL("Nuzlocke")]
+    chaoticCommand = pbHasBeatenGame? ? _INTL("Chaotic") : _INTL("Chaotic")
+    modes = [_INTL("Normal"), _INTL("Hard"), _INTL("Extreme"), _INTL("Nuzlocke"), chaoticCommand]
     helptext = [_INTL("Recommended for beginners or those who want to enjoy the story."),
                 _INTL("For those with experience in DR and want a bit of a challenge."),
                 _INTL("Tired of Hard mode already? This really shows if you've got the skills."),
-                _INTL("You like the thrill of a challenge; not for the faint of heart.")
+                _INTL("You like the thrill of a challenge; not for the faint of heart."),
+                _INTL("Devastation awaits. Unlocked only after beating the game once.")
     ]
     rulestext = [_INTL("Rules:\nMost trainer battles can be refused."),
                  _INTL("Rules:\nTrainer battles cannot be refused."),
                  _INTL("Rules:\nHard mode rules, plus...\nAll enemy Pokemon gain +2 levels."),
-                 _INTL("Rules:\nExtreme mode rules, plus...\nPokemon die when they faint. Only one Pokemon may be caught per map. All Pokemon must be nicknamed.")
+                 _INTL("Rules:\nExtreme mode rules, plus...\nPokemon die when they faint. Only one Pokemon may be caught per map. All Pokemon must be nicknamed."),
+                 _INTL("Rules:\nNuzlocke mode rules, plus...\nAll enemy Pokemon gain +4 stats, but you gain increased exp. Healers and inns cost money, and there are no dragon balls.")
     ]
     msgwindow = pbCreateMessageWindow
     ruleswindow = pbCreateMessageWindow
@@ -1358,7 +1361,9 @@ def pbChooseGamemode
     }
     pbDisposeMessageWindow(msgwindow)
     pbDisposeMessageWindow(ruleswindow)
-    if pbConfirmMessage(_INTL("You have chosen #{modes[command]} mode. Is this okay?"))
+    if command == 4 && !pbHasBeatenGame?
+      pbMessage(_INTL("You must beat the game at least once to unlock this mode!"))
+    elsif pbConfirmMessage(_INTL("You have chosen #{modes[command]} mode. Is this okay?"))
       pbSet(32, command)
       if command >= 3
         pbSetPermadeath(:NUZLOCKE)
@@ -1366,6 +1371,11 @@ def pbChooseGamemode
       break
     end
   end
+end
+
+# CHANGED: Method to check if player has beaten the game at least once
+def pbHasBeatenGame?
+  return false
 end
 
 # CHANGED: Method to get current game mode
