@@ -1,8 +1,10 @@
-# Deku Map (2) - Lurelin Village (5)
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+# Dark Rising HQ (2) - Lurelin Village (5)
 2,East,0,5,West,0
 # Deku Route (3) - Lurelin Village (5)
 3,East,0,5,West,62
-# Deku Route (3) - Deku Map (2)
+# Deku Route (3) - Dark Rising HQ (2)
 3,North,0,2,South,0
 # Meridian Town (9) - Meridian Route (77)
 9,North,0,77,South,27
@@ -22,3 +24,5 @@
 36,North,9,34,South,0
 # Green Bay Beach (37) - Green Bay Town (36)
 37,East,0,36,West,6
+# Sanctum (45) - Doldrum's Route (44)
+45,West,13,44,East,0
