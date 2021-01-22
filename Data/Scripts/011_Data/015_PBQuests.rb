@@ -142,6 +142,7 @@ def pbActivateQuest(id)
   id = getConst(PBQuests, id) if id.is_a?(Symbol)
   quest = Quest.new(id)
   $Trainer.activeQuests.push(quest)
+  pbSEPlay("Skyrim quest complete sound")
   pbMessage(_INTL("Received {1} {2}!", $PokemonGlobal.playerID==0 ? "mission" : "quest", quest.name))
   $PokemonTemp.hud.updateWaypoint
 end
