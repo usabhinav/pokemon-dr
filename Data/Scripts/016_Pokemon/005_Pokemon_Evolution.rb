@@ -61,6 +61,9 @@ module PBEvolution
   TradeNight        = 57
   TradeItem         = 58
   TradeSpecies      = 59
+  CriticalHits      = 60
+  DamageDone        = 61
+  SweetItem         = 62
 
   def self.maxValue; return 59; end
 
