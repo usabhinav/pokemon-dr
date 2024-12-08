@@ -1,41 +1,132 @@
-# Pok�mon Essentials
+# Project Dark Rising 3
 
-Based on Essentials v18.
+Based on Essentials v18. This is a fork of the following repository: https://github.com/Maruno17/pokemon-essentials
 
-You can build your fangame on top of a fork of this repository. Doing so will let you update your fangame with improvements made to this repo as soon as they are made.
+This repository is DEPRECATED, but the project is still ongoing. For more information about the current state of the game, visit the website: https://darkrisingfans.weebly.com/dark-rising-iii.html
 
-## Usage
+## About
 
-1. Fork this repo.
-2. Get a copy of Essentials v18 (a download link cannot be provided here).
-3. Clone your forked repo into the Essentials v18 folder, replacing the existing files with the ones from the repo.
+This repository contains the final version of the scripts and data files used in the Pokémon Dark Rising 3 fangame. It was initially set to private during development of the game to prevent accidental leaks of the story and new gameplay features, but that is no longer a concern because the game will not be moving forward as a fangame (and as such, will not be using any of the resources available in this repository). The full repository with all resources will be available as its own project listing in other forums.
 
-From here, you can edit this project to turn it into your fangame/develop mods. When this repo is updated, you can pull the changes to update your fork and get the updates into your fangame/modding environment.
+## Credits
 
-## Scripts
+Project Lead / Story Writer: DarkRisingGirl
 
-The scripts no longer live in the Scripts.rxdata file. They have been extracted into separate files and placed in the Data/Scripts/ folder (and subfolders within). This makes them easier to work on concurrently with other people.
+If you feel that you contributed to this project but do not see your name in the credits, please feel free to contact DarkRisingGirl (on website/Youtube/Twitter) or the repo owner and we will gladly add your name to this list.
 
-The scripts are loaded into the game alphanumerically, starting from the top folder (Data/Scripts/) and going depth-first. That is, all scripts in a given folder are loaded, and then each of its subfolder is checked in turn (again in alphanumerical order) for files/folders to load/check.
+### Active Development Team
 
-### Extracting and reintegrating scripts
+Programmers / Event Scripters: Abo G (NettoHikari), Biskit, Moca (Blanny)
 
-This repo contains two script files in the main folder:
+PBS Data File Editors: Abo G (NettoHikari), MrIpsilon
 
-* scripts_extract.rb - Run this to extract all scripts from Scripts.rxdata into individual .rb files (any existing individual .rb files are deleted).
-  * Scripts.rxdata is backed up to ScriptsBackup.rxdata, and is then replaced with a version that reads the individual .rb files and does nothing else.
-* scripts_combine.rb - Run this to reintegrate all the individual .rb files back into Scripts.rxdata.
-  * The individual .rb files are left where they are, but they no longer do anything.
+Music Composer: Chani von Karpa
 
-The intention is to replace these with something more user-friendly.
+Spriters: Chani von Karpa, Mid117, MrIpsilon, BunnySpriter
 
-## Files not in the repo
+Mappers: Hex, Pranav, Lethality, dirtywiggles
 
-The .gitignore file lists the files that will not be included in this repo. These are:
+### Contributors
 
-* The Audio/ and Graphics/ folders and everything in them.
-* Everything in the Data/ folder, except for:
-  * The Data/Scripts/ folder and everything in there.
-  * Scripts.rxdata (a special version that just loads the individual script files).
-* A few files in the main project folder (two of the Game.xxx files, and the RGSS dll file).
-* Temporary files.
+Event Scripters: Chem
+
+Spriters: Briar, Jo
+
+Mappers: Alice, Ditto, Derek
+
+### Additional Resources
+
+#### Plugins / Scripts
+
+Multiple Protagonists script: Abo G (NettoHikari)
+- Developed as part of this project
+- https://eeveeexpo.com/resources/280/
+
+Nuzlocke Permadeath script: Abo G (NettoHikari)
+- Developed as part of this project
+- https://eeveeexpo.com/resources/309/
+
+RMXP Event Exporter script: Abo G (NettoHikari)
+- Developed as part of this project
+- https://eeveeexpo.com/resources/394/
+
+Set Controls Screen script: FL
+- https://www.pokecommunity.com/showthread.php?t=309391
+
+EVs/IVs in summary script: Zardae
+- https://reliccastle.com/resources/319/
+
+Better Fast-forward Mode: Marin
+- https://reliccastle.com/resources/151/
+
+Speech Arrow Graphics (graphics only): Carmaniac
+- https://www.pokecommunity.com/showthread.php?t=295277
+
+Generation 8 Project
+- https://reliccastle.com/resources/493/
+
+#### Sprites / Art
+
+Tilesets: PeekyChew, Phyromatical, Rayquaza-Dot, KyleDove, Shiney570, N-Sora96, Zetaveres852, chimcharsfireworkd, Kymotonian, Speedialga, Alucus, Magiscarf, Hek-el-grande
+
+Title Screen: Queso
+
+Trainer Sprite Base (5th Gen OWs): Dewitty
+
+Meltan front and back sprites (including shiny): JaegerLucciano23
+- https://www.deviantart.com/jaegerlucciano23/art/Meltan-64X64-for-GBA-768128675
+
+Dark Tower Tileset
+- https://gdu.one/forums/gallery/image/3702-dark-tower/
+
+Pokemon Sprites (Gen 6/7): Smogen
+
+#### Music
+
+OST from the following:
+- Chrono Trigger
+- Trails of Cold Steel
+- Final Fantasy VII/XIV
+- Persona 3/5
+- One Piece
+- Tales of Berseria
+- The Last of Us
+
+#### Misc.
+
+Walkthroughs: HeroVoltsey, Fitzhogan11, SacredFireNegro
+
+With contributions from:
+- AvatarMonkeyKirby
+- Luka S.J.
+- Boushy
+- MiDas Mike
+- Brother1440
+- Near Fantastica
+- FL.
+- PinkMan
+- Genzai Kawakami
+- Popper
+- Harshboy
+- Rataime
+- help-14
+- SoundSpawn
+- IceGod64
+- the__end
+- Jacob O. Wobbrock
+- Venom12
+- KitsuneKouta
+- Wachunga
+- Lisa Anthony
+- xLeD
+and everyone else who helped out!
+
+"RPG Maker XP" by:
+- Enterbrain
+
+Pokémon is owned by:
+- The Pokémon Company
+- Nintendo
+- Affiliated with Game Freak
+
+This is a non-profit fan-made game. Please support the official games!
