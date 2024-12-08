@@ -54,16 +54,16 @@ Set Controls Screen script: FL
 - https://www.pokecommunity.com/showthread.php?t=309391
 
 EVs/IVs in summary script: Zardae
-- https://reliccastle.com/resources/319/
+- https://eeveeexpo.com/resources/319/
 
 Better Fast-forward Mode: Marin
-- https://reliccastle.com/resources/151/
+- https://eeveeexpo.com/resources/151/
 
 Speech Arrow Graphics (graphics only): Carmaniac
 - https://www.pokecommunity.com/showthread.php?t=295277
 
 Generation 8 Project
-- https://reliccastle.com/resources/493/
+- https://eeveeexpo.com/resources/493/
 
 #### Sprites / Art
 
