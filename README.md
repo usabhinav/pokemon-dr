@@ -96,6 +96,11 @@ OST from the following:
 
 Walkthroughs: HeroVoltsey, Fitzhogan11, SacredFireNegro
 
+Pokémon Essentials" was created by:
+- Flameguru
+- Poccil (Peter O.)
+- Maruno
+
 With contributions from:
 - AvatarMonkeyKirby
 - Luka S.J.
